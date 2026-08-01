@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Source reference project (dashboard was imported from here)
+showroom-main

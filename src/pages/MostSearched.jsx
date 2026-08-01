@@ -38,7 +38,7 @@ const MostSearched = () => {
 
   const cars = CARS.filter((car) => car.category === activeFilter)
   const fallback = cars.length ? cars : CARS.slice(0, 3)
-  const shown = fallback.slice(0, 6)
+  const shown = fallback.slice(0, 3)
 
   return (
     <section ref={sectionRef} id="inventory" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:py-28">

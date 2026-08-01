@@ -8,6 +8,7 @@ import { openMobileMenu, closeMobileMenu } from "../../animations/microInteracti
 const LINKS = [
   { label: "Accueil", to: "/" },
   { label: "Inventaire", to: "/listing" },
+  { label: "Échange & Vente", to: "/operations" },
   { label: "Contact", to: "/contact" },
 ];
 

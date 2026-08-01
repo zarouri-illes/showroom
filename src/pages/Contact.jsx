@@ -35,7 +35,7 @@ const Contact = () => {
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <div>
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            <DecryptedText text="03 — Contactez-nous" animateOn="view" speed={40} />
+            <DecryptedText text="05 — Contactez-nous" animateOn="view" speed={40} />
           </p>
           <SplitText
             tag="h2"

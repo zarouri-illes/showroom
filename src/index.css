@@ -6,7 +6,15 @@
   --font-heading: "Zen Dots", sans-serif;
   --font-sans: "Outfit", "Poppins", sans-serif;
   --color-accent: #ffd60a;
+  --color-accent-hover: #e6c200;
   --color-carbon: #0b0b0d;
+  --color-success: #27ae60;
+  --color-warning: #f39c12;
+  --color-dark-bg: #0b0b0d;
+  --color-dark-bg-alt: #101012;
+  --color-dark-card: #141416;
+  --color-dark-text: #e8e8f0;
+  --color-dark-border: #1f1f1f;
 }
 
 /* Activates the `nav-scrolled:` variant when the navbar is shrunk on scroll */
@@ -86,8 +94,14 @@ html {
   transform: translateY(0) scale(0.97);
 }
 
-/* ---------- Reduced motion ---------- */
+/* ---------- Reviews marquee ---------- */
 
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -100,4 +114,48 @@ html {
     transform: none;
     box-shadow: none;
   }
+}
+
+/* ---------- Dashboard admin ---------- */
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes fieldGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 214, 10, 0); }
+  50% { box-shadow: 0 0 0 1px rgba(255, 214, 10, 0.5), 0 0 24px -4px rgba(255, 214, 10, 0.5); }
+}
+
+.field-glow:focus-within {
+  border-color: var(--color-accent);
+  animation: fieldGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes auroraShift {
+  0%, 100% { opacity: 0.45; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.7; transform: scale(1.08) rotate(6deg); }
+}
+
+.aurora-bg {
+  background:
+    radial-gradient(600px 420px at 18% 22%, rgba(255, 214, 10, 0.4), transparent 60%),
+    radial-gradient(520px 360px at 82% 72%, rgba(230, 194, 0, 0.35), transparent 60%),
+    radial-gradient(420px 300px at 62% 28%, rgba(255, 224, 80, 0.25), transparent 60%);
+  animation: auroraShift 9s ease-in-out infinite;
 }

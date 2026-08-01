@@ -68,7 +68,7 @@ const Hero = () => {
 
       <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col items-center justify-center gap-8 px-4 pb-24 pt-32 sm:px-6">
         {/* TITLE — react-bits SplitText chars + ShinyText accent */}
-        <h1 className="flex flex-wrap items-baseline justify-center gap-x-5 gap-y-1">
+        <h1 className="flex w-full flex-col items-center gap-y-2 text-center sm:gap-y-3">
           <SplitText
             tag="span"
             text="Trouvez votre"

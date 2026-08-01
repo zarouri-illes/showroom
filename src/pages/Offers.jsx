@@ -80,11 +80,11 @@ const Offers = () => {
         </p>
         <div className="flex w-full flex-wrap items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-8 sm:px-6">
           {BRANDS.map((brand) => (
-            <span key={brand.alt} className="icons flex w-[11.11%] justify-center px-1 py-3">
+            <span key={brand.alt} className="icons flex w-1/3 justify-center px-1 py-3 sm:w-1/4 lg:w-1/5">
               <img
                 src={brand.src}
                 alt={brand.alt}
-                className="h-12 w-auto object-contain transition-transform duration-300 ease-out hover:scale-110 sm:h-16"
+                className="h-14 w-auto object-contain transition-transform duration-300 ease-out hover:scale-110 sm:h-16"
               />
             </span>
           ))}

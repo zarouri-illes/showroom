@@ -40,7 +40,7 @@ const Footer = () => {
       ref={footerRef}
       className="relative w-full border-t border-white/10 bg-white/[0.02]"
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:py-20">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-2 lg:py-20">
         <div className="footer-col">
           <h3 className="logo mb-4 text-2xl font-extrabold tracking-wider text-white">
             frereauto<span className="text-accent">10</span>
@@ -62,24 +62,6 @@ const Footer = () => {
                 </Link>
               </li>
             ))}
-          </ul>
-        </div>
-
-        <div className="footer-col">
-          <h3 className="mb-4 text-lg font-semibold text-white">Liens rapides</h3>
-          <ul className="space-y-2 text-sm text-white/60">
-            <li>
-              <Link to="/contact" className="transition-colors hover:text-accent">
-                Réserver
-              </Link>
-            </li>
-            <li>Politique de confidentialité</li>
-            <li>
-              <Link to="/contact" className="transition-colors hover:text-accent">
-                Nous contacter
-              </Link>
-            </li>
-            <li>Mon compte</li>
           </ul>
         </div>
       </div>

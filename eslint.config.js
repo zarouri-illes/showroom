@@ -5,7 +5,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist'] },
+  { ignores: ['dist', 'showroom-main'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -33,6 +33,17 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+    },
+  },
+  {
+    // Imported admin dashboard code (from showroom project) follows a
+    // different style guide; relax the strict quality rules for it only.
+    files: ['src/pages/admin/**/*.jsx', 'src/context/AdminContext.jsx', 'src/components/SalesChart.jsx', 'src/components/ImageWithSkeleton.jsx'],
+    rules: {
+      'react/prop-types': 'off',
+      'react/no-unescaped-entities': 'off',
+      'react-hooks/static-components': 'off',
+      'react-hooks/set-state-in-effect': 'off',
     },
   },
 ]

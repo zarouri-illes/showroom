@@ -1,6 +1,8 @@
 import Hero from './Hero'
 import Offers from './Offers'
 import MostSearched from './MostSearched'
+import Reviews from './Reviews'
+import TradeIn from './TradeIn'
 import Contact from './Contact'
 
 const HomePage = () => (
@@ -8,6 +10,8 @@ const HomePage = () => (
     <Hero />
     <Offers />
     <MostSearched />
+    <Reviews />
+    <TradeIn />
     <Contact />
   </>
 )
