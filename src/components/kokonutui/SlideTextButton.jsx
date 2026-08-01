@@ -27,16 +27,16 @@ export default function SlideTextButton({
       href={to ? undefined : href}
       onClick={onClick}
       className={cn(
-        "group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-lg px-8 text-sm font-medium tracking-tight transition-all duration-300",
+        "btn-glow group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-lg px-8 text-sm font-medium tracking-tight",
         variantStyles,
         className
       )}
     >
-      <span className="relative inline-block transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
-        <span className="flex items-center gap-2 opacity-100 transition-opacity duration-300 group-hover:opacity-0">
+      <span className="relative inline-block whitespace-nowrap transition-transform duration-300 ease-in-out group-hover:-translate-y-full">
+        <span className="flex items-center gap-2 whitespace-nowrap opacity-100 transition-opacity duration-300 group-hover:opacity-0">
           {text}
         </span>
-        <span className="absolute left-0 top-full flex items-center gap-2 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span className="absolute left-0 top-full flex items-center gap-2 whitespace-nowrap opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           {slideText}
         </span>
       </span>

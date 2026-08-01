@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { Mail, Phone } from 'lucide-react'
 import SlideTextButton from '../components/kokonutui/SlideTextButton'
 import SplitText from '../components/reactbits/SplitText'
 import DecryptedText from '../components/reactbits/DecryptedText'
@@ -90,11 +91,11 @@ const Contact = () => {
           </div>
 
           <div className="contact-right flex flex-wrap gap-3">
-            <a href="mailto:contact@dealership.fr" className="btn-anime rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white">
-              📧 contact@dealership.fr
+            <a href="mailto:contact@dealership.fr" className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white">
+              <Mail size={16} /> contact@dealership.fr
             </a>
-            <a href="tel:+33123456789" className="btn-anime rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white">
-              📞 +33 1 23 45 67 89
+            <a href="tel:+33123456789" className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white">
+              <Phone size={16} /> +33 1 23 45 67 89
             </a>
           </div>
         </div>

@@ -1,21 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { Gauge, Rocket, Timer, Armchair, Fuel, Settings2, Milestone, Cog, Palette } from 'lucide-react'
 import { CARS, getCarById, formatPrice } from '../data/cars'
 import CarCard from '../components/CarCard'
 import SpotlightCard from '../components/kokonutui/SpotlightCard'
 import SlideTextButton from '../components/kokonutui/SlideTextButton'
 import SplitText from '../components/reactbits/SplitText'
+import SmartImage from '../components/ui/SmartImage'
 import { revealStagger } from '../animations/gsap'
 import { cn } from '../lib/utils'
 
 const SPEC_LABELS = [
-  { key: 'hp', label: 'Puissance' },
-  { key: 'acceleration', label: '0 à 100 km/h' },
-  { key: 'topSpeed', label: 'Vitesse max' },
-  { key: 'seats', label: 'Places' },
-  { key: 'fuel', label: 'Carburant' },
-  { key: 'transmission', label: 'Transmission' },
+  { key: 'hp', label: 'Puissance', Icon: Gauge },
+  { key: 'acceleration', label: '0 à 100 km/h', Icon: Rocket },
+  { key: 'topSpeed', label: 'Vitesse max', Icon: Timer },
+  { key: 'mileage', label: 'Kilométrage', Icon: Milestone },
+  { key: 'seats', label: 'Places', Icon: Armchair },
+  { key: 'engine', label: 'Moteur', Icon: Cog },
+  { key: 'fuel', label: 'Carburant', Icon: Fuel },
+  { key: 'transmission', label: 'Transmission', Icon: Settings2 },
+  { key: 'color', label: 'Couleur', Icon: Palette },
 ]
+
+const getSpecValue = (car, key) => {
+  if (key === 'mileage') return car.mileage ? `${car.mileage.toLocaleString('fr-FR')} km` : 'Neuf'
+  return car.specs[key] ?? car[key]
+}
 
 const CarDetailPage = () => {
   const { id } = useParams()
@@ -64,10 +74,11 @@ const CarDetailPage = () => {
         {/* Gallery */}
         <div className="detail-reveal">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-3">
-            <img
+            <SmartImage
               src={gallery[activeImg]}
               alt={`${car.brand} ${car.model}`}
-              className="h-72 w-full rounded-xl object-cover sm:h-96"
+              className="h-72 w-full rounded-xl sm:h-96"
+              imgClassName="object-cover"
             />
           </div>
           {gallery.length > 1 && (
@@ -137,7 +148,7 @@ const CarDetailPage = () => {
             />
             <a
               href={`mailto:contact@dealership.fr?subject=Demande pour ${car.name}`}
-              className="rounded-lg border border-white/10 px-6 py-2.5 text-sm text-white/80 transition-all hover:border-white/30 hover:bg-white/5 hover:text-white"
+              className="btn-glow rounded-lg border border-white/10 px-6 py-2.5 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white"
             >
               Poser une question
             </a>
@@ -174,11 +185,16 @@ const CarDetailPage = () => {
           textAlign="left"
           className="title text-2xl text-white sm:text-4xl"
         />
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {SPEC_LABELS.map((spec) => (
-            <SpotlightCard key={spec.key} className="spec-card min-h-[110px] justify-center" accent="#60a5fa">
-              <p className="text-xs uppercase tracking-widest text-white/40">{spec.label}</p>
-              <p className="mt-2 text-xl font-semibold text-white">{car.specs[spec.key]}</p>
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3">
+          {SPEC_LABELS.map(({ key, label, Icon }) => (
+            <SpotlightCard key={key} className="spec-card relative min-h-[110px] justify-center overflow-hidden" accent="#60a5fa">
+              <Icon
+                size={56}
+                strokeWidth={1.25}
+                className="pointer-events-none absolute -right-3 -top-3 text-white opacity-10"
+              />
+              <p className="relative text-xs uppercase tracking-widest text-white/40">{label}</p>
+              <p className="relative mt-2 text-xl font-semibold text-white">{getSpecValue(car, key)}</p>
             </SpotlightCard>
           ))}
         </div>

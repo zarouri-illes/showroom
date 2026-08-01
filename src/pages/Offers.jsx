@@ -7,6 +7,7 @@ import SlideTextButton from '../components/kokonutui/SlideTextButton'
 import SplitText from '../components/reactbits/SplitText'
 import DecryptedText from '../components/reactbits/DecryptedText'
 import Magnet from '../components/reactbits/Magnet'
+import SmartImage from '../components/ui/SmartImage'
 import { gsap } from '../animations'
 import { revealStagger, countUp } from '../animations/gsap'
 import { initButtonEffects } from '../animations/microInteractions'
@@ -22,11 +23,14 @@ const OFFERS = [
 
 const BRANDS = [
   { src: logos.porsLogo, alt: 'Porsche' },
-  { src: logos.lamLogo, alt: 'Lamborghini' },
-  { src: logos.nissanLogo, alt: 'Nissan' },
-  { src: logos.ferrariLogo, alt: 'Ferrari' },
-  { src: logos.cooperLogo, alt: 'MINI' },
   { src: logos.audiLogo, alt: 'Audi' },
+  { src: logos.bmwLogo, alt: 'BMW' },
+  { src: logos.mercedesLogo, alt: 'Mercedes-Benz' },
+  { src: logos.vwLogo, alt: 'Volkswagen' },
+  { src: logos.landRoverLogo, alt: 'Land Rover' },
+  { src: logos.gmcLogo, alt: 'GMC' },
+  { src: logos.jetourLogo, alt: 'Jetour' },
+  { src: logos.toyotaLogo, alt: 'Toyota' },
 ]
 
 const Offers = () => {
@@ -74,14 +78,15 @@ const Offers = () => {
         <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.22em] text-white/40">
           Adopté par les plus grandes marques automobiles
         </p>
-        <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-8 rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-8 sm:justify-between sm:px-10">
+        <div className="flex w-full flex-wrap items-center justify-center rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-8 sm:px-6">
           {BRANDS.map((brand) => (
-            <img
-              key={brand.alt}
-              src={brand.src}
-              alt={brand.alt}
-              className="icons h-10 w-auto object-contain opacity-45 grayscale transition-all duration-300 ease-out hover:scale-110 hover:opacity-100 hover:grayscale-0 hover:drop-shadow-[0_0_14px_rgba(255,214,10,0.35)] sm:h-12"
-            />
+            <span key={brand.alt} className="icons flex w-[11.11%] justify-center px-1 py-3">
+              <img
+                src={brand.src}
+                alt={brand.alt}
+                className="h-12 w-auto object-contain transition-transform duration-300 ease-out hover:scale-110 sm:h-16"
+              />
+            </span>
           ))}
         </div>
       </div>
@@ -132,7 +137,12 @@ const Offers = () => {
         <div className="box grid gap-4 sm:grid-cols-2">
           <SpotlightCard className="min-h-[320px]" accent="#60a5fa">
             <div className="relative h-full min-h-[320px] overflow-hidden rounded-xl">
-              <img src={boxImg} alt="Showroom de supercars" className="h-full w-full object-cover object-center opacity-80" />
+              <SmartImage
+                src={boxImg}
+                alt="Showroom de supercars"
+                className="absolute inset-0 h-full w-full"
+                imgClassName="object-cover object-center opacity-80"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-5 left-5">
                 <h3 className="title text-2xl text-white">Supercars</h3>
@@ -144,7 +154,12 @@ const Offers = () => {
           </SpotlightCard>
 
           <SpotlightCard className="min-h-[320px] justify-center" accent="#ffd60a">
-            <img src={boxTwoImg} alt="Lamborghini Urus" className="mx-auto h-48 w-full object-contain object-bottom" />
+            <SmartImage
+              src={boxTwoImg}
+              alt="Lamborghini Urus"
+              className="mx-auto h-48 w-full"
+              imgClassName="object-contain object-bottom"
+            />
             <div className="mt-2 text-center">
               <h3 className="title text-5xl text-white">
                 <span className="stat-num">0</span>

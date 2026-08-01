@@ -4,6 +4,7 @@ import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
 import { initInputFocus, initButtonEffects } from '../animations/microInteractions'
 import DecryptedText from './reactbits/DecryptedText'
+import { InstagramIcon, XIcon, FacebookIcon } from './SocialIcons'
 
 const MENU_LINKS = [
   { label: 'Accueil', to: '/' },
@@ -45,7 +46,7 @@ const Footer = () => {
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:py-20">
         <div className="footer-col">
           <h3 className="logo mb-4 text-2xl font-extrabold tracking-wider text-white">
-            Dealer<span className="text-accent">Ship</span>
+            frereauto<span className="text-accent">10</span>
           </h3>
           <ul className="space-y-2 text-sm text-white/60">
             <li>Réservez votre consultation gratuite !</li>
@@ -100,7 +101,7 @@ const Footer = () => {
               placeholder="Email"
               className="input-anime w-full flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-white/40"
             />
-            <button className="btn-anime shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-white">
+            <button className="btn-anime btn-glow shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-white">
               <DecryptedText text="S'abonner" animateOn="hover" speed={60} />
             </button>
           </div>
@@ -108,16 +109,16 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/10 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
-        <p>Copyright @ DealerShip. Tous droits réservés.</p>
+        <p>Copyright @ frereauto10. Tous droits réservés.</p>
         <div className="flex gap-3">
-          <a href="#" aria-label="Instagram" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-accent hover:text-black">
-            📸
+          <a href="#" aria-label="Instagram" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
+            <InstagramIcon />
           </a>
-          <a href="#" aria-label="X" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-xs transition-colors hover:bg-accent hover:text-black">
-            X
+          <a href="#" aria-label="X" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
+            <XIcon />
           </a>
-          <a href="#" aria-label="Facebook" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-accent hover:text-black">
-            f
+          <a href="#" aria-label="Facebook" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
+            <FacebookIcon />
           </a>
         </div>
       </div>

@@ -74,7 +74,7 @@ const MostSearched = () => {
             key={filter.value}
             onClick={() => setActiveFilter(filter.value)}
             className={cn(
-              'rounded-xl border px-4 py-2 text-sm transition-all duration-300',
+              'btn-glow rounded-xl border px-4 py-2 text-sm',
               activeFilter === filter.value
                 ? 'border-accent bg-accent font-semibold text-black'
                 : 'border-white/10 text-white/70 hover:border-white/30 hover:text-white'

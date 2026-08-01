@@ -6,6 +6,7 @@ import { gsap, prefersReducedMotion } from '../animations'
 import { parallax, mouseTilt } from '../animations/gsap'
 import SplitText from '../components/reactbits/SplitText'
 import ShinyText from '../components/reactbits/ShinyText'
+import SmartImage from '../components/ui/SmartImage'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -98,17 +99,18 @@ const Hero = () => {
 
         {/* CAR IMAGE */}
         <div className="flex w-[85%] justify-center overflow-hidden sm:w-[75%] lg:w-[65%]">
-          <img
+          <SmartImage
             src={lambo}
             alt="Lamborghini Urus"
             className="car-main h-auto w-full"
+            imgClassName="object-contain"
           />
         </div>
 
         {/* LEFT CAPTION */}
         <div className="hero-caption absolute bottom-16 left-8 hidden w-[280px] flex-wrap text-white/80 lg:block">
           <p className="text-sm leading-relaxed">
-            Chez DealerShip, nous nous engageons à vous offrir une expérience
+            Chez frereauto10, nous nous engageons à vous offrir une expérience
             exceptionnelle qui répond à vos besoins uniques.
           </p>
         </div>

@@ -66,10 +66,38 @@ html {
   color: rgb(0, 0, 0);
 }
 
+/* ---------- Buttons: scale + accent glow on hover ---------- */
+
+.btn-glow {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease,
+    background-color 250ms ease,
+    color 250ms ease;
+}
+
+.btn-glow:hover {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 6px 22px rgba(255, 214, 10, 0.3), 0 0 0 1px rgba(255, 214, 10, 0.4);
+}
+
+.btn-glow:active {
+  transform: translateY(0) scale(0.97);
+}
+
 /* ---------- Reduced motion ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .btn-glow,
+  .btn-glow:hover,
+  .btn-glow:active {
+    transition: none;
+    transform: none;
+    box-shadow: none;
   }
 }

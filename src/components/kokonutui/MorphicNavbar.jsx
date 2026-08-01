@@ -62,7 +62,7 @@ export default function MorphicNavbar() {
         )}
       >
         <Link to="/" className="logo whitespace-nowrap text-lg font-extrabold tracking-wider text-white sm:text-xl">
-          Dealer<span className="text-accent">Ship</span>
+          frereauto<span className="text-accent">10</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -84,17 +84,11 @@ export default function MorphicNavbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/listing"
-            className="hidden whitespace-nowrap rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-white md:block"
-          >
-            Voir l&apos;inventaire
-          </Link>
           <button
             aria-label="Basculer le menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 text-white md:hidden"
+            className="btn-glow flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 text-white md:hidden"
           >
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -121,13 +115,6 @@ export default function MorphicNavbar() {
             {item.label}
           </Link>
         ))}
-        <Link
-          to="/listing"
-          onClick={() => setMenuOpen(false)}
-          className="mobile-link mt-2 rounded-xl bg-accent px-4 py-3 text-center text-sm font-semibold text-black"
-        >
-          Voir l&apos;inventaire
-        </Link>
       </div>
     </header>
   )

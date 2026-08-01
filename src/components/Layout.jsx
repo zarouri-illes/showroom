@@ -1,7 +1,8 @@
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import MorphicNavbar from './kokonutui/MorphicNavbar'
 import Footer from './Footer'
+import PageLoader from './ui/PageLoader'
 import { initSmoothScroll, scrollToTop, scrollTo } from '../animations/smoothScroll'
 
 // Shared shell: navbar + routed content + footer, with smooth scroll + scroll reset.
@@ -29,7 +30,9 @@ const Layout = () => {
     <div className="bg-carbon min-h-screen w-full overflow-x-clip">
       <MorphicNavbar />
       <main>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </div>

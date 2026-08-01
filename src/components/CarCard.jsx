@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
 import SpotlightCard from './kokonutui/SpotlightCard'
+import SmartImage from './ui/SmartImage'
 import { formatPrice } from '../data/cars'
 
 const CarCard = ({ car }) => {
@@ -9,7 +10,12 @@ const CarCard = ({ car }) => {
   return (
     <SpotlightCard className="cards h-full" accent="#ffd60a">
       <div className="relative mb-4 overflow-hidden rounded-xl bg-white/5">
-        <img src={image} alt={`${brand} ${model}`} className="h-44 w-full object-cover" />
+        <SmartImage
+          src={image}
+          alt={`${brand} ${model}`}
+          className="h-44 w-full rounded-xl"
+          imgClassName="object-cover"
+        />
         {badge && (
           <span className="absolute left-3 top-3 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-black">
             {badge}

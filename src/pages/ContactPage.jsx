@@ -1,6 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
+import { Check } from 'lucide-react'
 import SpotlightCard from '../components/kokonutui/SpotlightCard'
 import SplitText from '../components/reactbits/SplitText'
+import Spinner from '../components/ui/Spinner'
+import {
+  InstagramIcon,
+  FacebookIcon,
+  XIcon,
+  YoutubeIcon,
+  LinkedinIcon,
+} from '../components/SocialIcons'
 import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
 import { initInputFocus, initButtonEffects } from '../animations/microInteractions'
@@ -11,9 +20,27 @@ const CONTACT_INFO = [
   { label: 'Email', value: 'contact@dealership.fr', href: 'mailto:contact@dealership.fr' },
 ]
 
+const SOCIAL_LINKS = [
+  { label: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
+  { label: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
+  { label: 'X', href: 'https://x.com', Icon: XIcon },
+  { label: 'YouTube', href: 'https://youtube.com', Icon: YoutubeIcon },
+  { label: 'LinkedIn', href: 'https://linkedin.com', Icon: LinkedinIcon },
+]
+
 const ContactPage = () => {
   const sectionRef = useRef(null)
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setTimeout(() => {
+      setSubmitting(false)
+      setSent(true)
+    }, 1200)
+  }
 
   useEffect(() => {
     const ctx = gsap.context(() => {}, sectionRef)
@@ -76,6 +103,27 @@ const ContactPage = () => {
             ))}
           </div>
 
+          {/* Social media */}
+          <div className="contact-card rounded-2xl border border-white/10 bg-white/[0.02] p-5">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-white/40">
+              Suivez-nous
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="btn-glow flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 hover:border-accent hover:bg-accent hover:text-black"
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
+
           <div className="contact-card overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2">
             <iframe
               title="Localisation du showroom"
@@ -92,10 +140,7 @@ const ContactPage = () => {
         {/* Form */}
         <form
           className="contact-card flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8"
-          onSubmit={(e) => {
-            e.preventDefault()
-            setSent(true)
-          }}
+          onSubmit={handleSubmit}
         >
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="flex flex-col gap-2 text-sm text-white/70">
@@ -138,9 +183,22 @@ const ContactPage = () => {
 
           <button
             type="submit"
-            className="btn-anime mt-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-white"
+            disabled={submitting}
+            className="btn-anime btn-glow mt-2 flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-80"
           >
-            {sent ? 'Message envoyé ✓' : 'Envoyer le message'}
+            {submitting ? (
+              <>
+                <Spinner size={18} />
+                Envoi en cours…
+              </>
+            ) : sent ? (
+              <>
+                <Check size={18} />
+                Message envoyé
+              </>
+            ) : (
+              'Envoyer le message'
+            )}
           </button>
           {sent && (
             <p className="text-sm text-white/70">

@@ -1,10 +1,12 @@
+import { lazy } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
 import Layout from './components/Layout'
-import HomePage from './pages/HomePage'
-import ListingsPage from './pages/ListingsPage'
-import CarDetailPage from './pages/CarDetailPage'
-import ContactPage from './pages/ContactPage'
+
+const HomePage = lazy(() => import('./pages/HomePage'))
+const ListingsPage = lazy(() => import('./pages/ListingsPage'))
+const CarDetailPage = lazy(() => import('./pages/CarDetailPage'))
+const ContactPage = lazy(() => import('./pages/ContactPage'))
 
 function App() {
   return (
