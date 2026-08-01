@@ -5,7 +5,6 @@ import SplitText from '../components/reactbits/SplitText'
 import Spinner from '../components/ui/Spinner'
 import BackButton from '../components/BackButton'
 import {
-  InstagramIcon,
   FacebookIcon,
   XIcon,
   YoutubeIcon,
@@ -22,7 +21,6 @@ const CONTACT_INFO = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://www.instagram.com/les_freres_auto_10/', Icon: InstagramIcon },
   { label: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
   { label: 'X', href: 'https://x.com', Icon: XIcon },
   { label: 'YouTube', href: 'https://youtube.com', Icon: YoutubeIcon },
@@ -92,7 +90,7 @@ const ContactPage = () => {
         <div className="flex flex-col gap-5">
           <div className="contact-card grid gap-4 sm:grid-cols-1">
             {CONTACT_INFO.map((item) => (
-              <SpotlightCard key={item.label} className="contact-card" accent="#ffd60a">
+              <SpotlightCard key={item.label} className="contact-card" accent="#3b82f6">
                 <p className="text-xs uppercase tracking-widest text-white/40">{item.label}</p>
                 {item.href ? (
                   <a href={item.href} className="mt-2 text-lg font-semibold text-white transition-colors hover:text-accent">

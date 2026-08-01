@@ -292,7 +292,7 @@ const OperationsPage = () => {
               </div>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {EXCHANGE_STEPS.map((step) => (
-                  <SpotlightCard key={step.number} className="operations-step" accent="#ffd60a">
+                  <SpotlightCard key={step.number} className="operations-step" accent="#3b82f6">
                     <div className="flex items-center justify-between">
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/30">
                         <step.icon size={18} />
@@ -314,7 +314,7 @@ const OperationsPage = () => {
               </div>
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {SELL_STEPS.map((step) => (
-                  <SpotlightCard key={step.number} className="operations-step" accent="#ffd60a">
+                  <SpotlightCard key={step.number} className="operations-step" accent="#3b82f6">
                     <div className="flex items-center justify-between">
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/30">
                         <step.icon size={18} />
@@ -331,7 +331,7 @@ const OperationsPage = () => {
         ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step) => (
-              <SpotlightCard key={step.number} className="operations-step" accent="#ffd60a">
+              <SpotlightCard key={step.number} className="operations-step" accent="#3b82f6">
                 <div className="flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/30">
                     <step.icon size={18} />

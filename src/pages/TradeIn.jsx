@@ -144,10 +144,10 @@ const TradeIn = () => {
 
             {/* Rotating arrows */}
             <div className="relative flex flex-shrink-0 items-center justify-center">
-              <div className="tradein-arrows flex h-20 w-20 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent shadow-[0_0_30px_-8px_rgba(255,214,10,0.4)]">
+              <div className="tradein-arrows flex h-20 w-20 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent shadow-[0_0_30px_-8px_rgba(59,130,246,0.4)]">
                 <RefreshCw size={26} />
               </div>
-              <span className="tradein-float absolute -bottom-9 whitespace-nowrap rounded-full border border-accent/40 bg-accent px-3 py-1.5 text-xs font-bold text-black shadow-[0_8px_24px_-6px_rgba(255,214,10,0.5)]">
+              <span className="tradein-float absolute -bottom-9 whitespace-nowrap rounded-full border border-accent/40 bg-accent px-3 py-1.5 text-xs font-bold text-black shadow-[0_8px_24px_-6px_rgba(59,130,246,0.5)]">
                 Paiement immédiat
               </span>
             </div>

@@ -44,13 +44,13 @@ export const initInputFocus = (scope = document) => {
   scope.querySelectorAll(".input-anime").forEach((input) => {
     const focus = () =>
       animate(input, {
-        boxShadow: ["0 0 0 0 rgba(255,214,10,0)", "0 0 0 3px rgba(255,214,10,0.45)"],
+        boxShadow: ["0 0 0 0 rgba(59,130,246,0)", "0 0 0 3px rgba(59,130,246,0.45)"],
         duration: 300,
         ease: "outQuad",
       });
     const blur = () =>
       animate(input, {
-        boxShadow: "0 0 0 0 rgba(255,214,10,0)",
+        boxShadow: "0 0 0 0 rgba(59,130,246,0)",
         duration: 300,
         ease: "outQuad",
       });

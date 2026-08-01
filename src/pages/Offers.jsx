@@ -153,7 +153,7 @@ const Offers = () => {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="min-h-[320px] justify-center" accent="#ffd60a">
+          <SpotlightCard className="min-h-[320px] justify-center" accent="#3b82f6">
             <SmartImage
               src={boxTwoImg}
               alt="Lamborghini Urus"

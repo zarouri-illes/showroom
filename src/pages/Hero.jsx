@@ -53,7 +53,7 @@ const Hero = () => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 15% 10%, rgba(255,214,10,0.10), transparent 42%), radial-gradient(circle at 90% 25%, rgba(96,165,250,0.10), transparent 45%), radial-gradient(circle at 50% 95%, rgba(255,255,255,0.06), transparent 40%)',
+            'radial-gradient(circle at 15% 10%, rgba(59,130,246,0.10), transparent 42%), radial-gradient(circle at 90% 25%, rgba(96,165,250,0.10), transparent 45%), radial-gradient(circle at 50% 95%, rgba(255,255,255,0.06), transparent 40%)',
         }}
       />
       {/* Subtle dot grid */}
@@ -79,7 +79,7 @@ const Hero = () => {
           />
           <ShinyText
             text="Voiture de rêve"
-            color="#ffd60a"
+            color="#3b82f6"
             shineColor="#ffffff"
             speed={3}
             className="hero-title text-4xl leading-tight sm:text-6xl lg:text-7xl"
@@ -111,7 +111,7 @@ const Hero = () => {
         <div className="hero-caption absolute bottom-16 left-8 hidden w-[280px] flex-wrap text-white/80 lg:block">
           <SplitText
             tag="p"
-            text="Chez frereauto10, nous nous engageons à vous offrir une expérience exceptionnelle qui répond à vos besoins uniques."
+            text="Chez momo auto, nous nous engageons à vous offrir une expérience exceptionnelle qui répond à vos besoins uniques."
             splitType="words"
             delay={20}
             duration={0.6}

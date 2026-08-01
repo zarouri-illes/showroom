@@ -222,7 +222,7 @@ export default function SalesChart({ reservations, cars }) {
               onClick={() => setPeriod(p.key)}
               className={`px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold whitespace-nowrap transition-all cursor-pointer ${
                 period === p.key
-                  ? 'bg-accent text-black shadow-[0_0_12px_rgba(255,214,10,0.4)]'
+                  ? 'bg-accent text-black shadow-[0_0_12px_rgba(59,130,246,0.4)]'
                   : 'text-white/50 hover:text-white hover:bg-white/5'
               }`}
             >
@@ -237,8 +237,8 @@ export default function SalesChart({ reservations, cars }) {
           <ComposedChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: angle === -35 ? 28 : 0 }}>
             <defs>
               <linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#ffd60a" />
-                <stop offset="100%" stopColor="#e6c200" />
+                <stop offset="0%" stopColor="#3b82f6" />
+                <stop offset="100%" stopColor="#2563eb" />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#1f1f1f" vertical={false} />
@@ -257,7 +257,7 @@ export default function SalesChart({ reservations, cars }) {
               tickLine={false}
               domain={[0, 'auto']}
             />
-            <Tooltip cursor={{ fill: 'rgba(255, 214, 10, 0.1)' }} content={<CustomTooltip />} />
+            <Tooltip cursor={{ fill: 'rgba(59, 130, 246, 0.1)' }} content={<CustomTooltip />} />
             <Bar
               dataKey="ventes"
               fill="url(#salesGradient)"

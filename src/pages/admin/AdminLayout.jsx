@@ -34,11 +34,8 @@ export default function AdminLayout({ children }) {
       <aside className={`fixed lg:sticky top-0 left-0 z-50 h-[100dvh] w-72 max-w-[85vw] bg-dark-card border-r border-white/10 flex flex-col transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex items-center justify-between px-5 py-5 border-b border-white/10">
           <Link to="/admin" className="flex items-center gap-3" onClick={() => setSidebarOpen(false)}>
-            <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 ring-1 ring-accent/30">
-              <img src="/746729992_18275557168293964_1498530892815492404_n.jpg" alt="frereauto10" className="w-full h-full object-cover" />
-            </div>
             <div>
-              <p className="title text-accent font-bold text-base leading-tight">frereauto<span className="text-white">10</span></p>
+              <p className="title text-accent font-bold text-base leading-tight">momo auto</p>
               <p className="text-[10px] text-white/40">Administration</p>
             </div>
           </Link>

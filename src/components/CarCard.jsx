@@ -8,7 +8,7 @@ const CarCard = ({ car }) => {
   const { id, image, brand, model, year, location, fuel, transmission, mileage, price, oldPrice, badge } = car
 
   return (
-    <SpotlightCard className="cards h-full" accent="#ffd60a">
+    <SpotlightCard className="cards h-full" accent="#3b82f6">
       <div className="relative mb-4 overflow-hidden rounded-xl bg-white/5">
         <SmartImage
           src={image}

@@ -65,7 +65,7 @@ export default function MorphicNavbar() {
         )}
       >
         <Link to="/" className="logo whitespace-nowrap text-lg font-extrabold tracking-wider text-white sm:text-xl">
-          frereauto<span className="text-accent">10</span>
+          momo auto
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

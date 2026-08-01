@@ -14,7 +14,7 @@ export default function SpotlightCard({
   dimmed = false,
   onHoverStart,
   onHoverEnd,
-  accent = "#ffd60a",
+  accent = "#3b82f6",
 }) {
   const cardRef = useRef(null);
 

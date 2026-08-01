@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
 import { initButtonEffects } from '../animations/microInteractions'
-import { InstagramIcon, XIcon, FacebookIcon } from './SocialIcons'
+import { XIcon, FacebookIcon } from './SocialIcons'
 
 const MENU_LINKS = [
   { label: 'Accueil', to: '/' },
@@ -43,7 +43,7 @@ const Footer = () => {
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-2 lg:py-20">
         <div className="footer-col">
           <h3 className="logo mb-4 text-2xl font-extrabold tracking-wider text-white">
-            frereauto<span className="text-accent">10</span>
+            momo auto
           </h3>
           <ul className="space-y-2 text-sm text-white/60">
             <li>Réservez votre consultation gratuite !</li>
@@ -67,11 +67,8 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/10 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
-        <p>Copyright @ frereauto10. Tous droits réservés.</p>
+        <p>Copyright @ momo auto. Tous droits réservés.</p>
         <div className="flex gap-3">
-          <a href="#" aria-label="Instagram" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
-            <InstagramIcon />
-          </a>
           <a href="#" aria-label="X" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
             <XIcon />
           </a>

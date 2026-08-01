@@ -62,7 +62,7 @@ export default function AdminLogin() {
           initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 200, damping: 16 }}
-          className="w-16 h-16 rounded-2xl bg-dark-card border border-accent/40 flex items-center justify-center overflow-hidden mx-auto mb-4 shadow-[0_0_30px_rgba(255,214,10,0.35)]"
+          className="w-16 h-16 rounded-2xl bg-dark-card border border-accent/40 flex items-center justify-center overflow-hidden mx-auto mb-4 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
         >
           <img
             src="/746729992_18275557168293964_1498530892815492404_n.jpg"
@@ -164,7 +164,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-accent text-black text-sm font-bold hover:bg-white disabled:opacity-80 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(255,214,10,0.3)]"
+            className="w-full py-3 rounded-xl bg-accent text-black text-sm font-bold hover:bg-white disabled:opacity-80 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
           >
             {loading ? (
               <>
