@@ -109,10 +109,16 @@ const Hero = () => {
 
         {/* LEFT CAPTION */}
         <div className="hero-caption absolute bottom-16 left-8 hidden w-[280px] flex-wrap text-white/80 lg:block">
-          <p className="text-sm leading-relaxed">
-            Chez frereauto10, nous nous engageons à vous offrir une expérience
-            exceptionnelle qui répond à vos besoins uniques.
-          </p>
+          <SplitText
+            tag="p"
+            text="Chez frereauto10, nous nous engageons à vous offrir une expérience exceptionnelle qui répond à vos besoins uniques."
+            splitType="words"
+            delay={20}
+            duration={0.6}
+            from={{ opacity: 0, y: 14 }}
+            textAlign="left"
+            className="text-sm leading-relaxed"
+          />
         </div>
 
         {/* MAP CARD */}
@@ -124,7 +130,7 @@ const Hero = () => {
             </Link>
           </div>
           <p className="mt-2 border-t border-white/10 pt-2 text-sm text-white/60">
-            12, Avenue des Champs-Élysées, 75008 Paris, France
+             Herkat, Bouria, Algérie
           </p>
         </div>
       </div>

@@ -2,8 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
-import { initInputFocus, initButtonEffects } from '../animations/microInteractions'
-import DecryptedText from './reactbits/DecryptedText'
+import { initButtonEffects } from '../animations/microInteractions'
 import { InstagramIcon, XIcon, FacebookIcon } from './SocialIcons'
 
 const MENU_LINKS = [
@@ -27,12 +26,10 @@ const Footer = () => {
       start: 'top 92%',
     })
 
-    const cleanInputs = initInputFocus(footerRef.current)
     const cleanBtns = initButtonEffects(footerRef.current)
 
     return () => {
       cleanReveal()
-      cleanInputs()
       cleanBtns()
       ctx.revert()
     }
@@ -43,16 +40,15 @@ const Footer = () => {
       ref={footerRef}
       className="relative w-full border-t border-white/10 bg-white/[0.02]"
     >
-      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:py-20">
+      <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:py-20">
         <div className="footer-col">
           <h3 className="logo mb-4 text-2xl font-extrabold tracking-wider text-white">
             frereauto<span className="text-accent">10</span>
           </h3>
           <ul className="space-y-2 text-sm text-white/60">
             <li>Réservez votre consultation gratuite !</li>
-            <li>+33 1 23 45 67 89</li>
-            <li>12, Avenue des Champs-Élysées</li>
-            <li>75008 Paris, France</li>
+            <li>05 40 09 99 59</li>
+            <li>Herkat, Bouria, Algérie</li>
           </ul>
         </div>
 
@@ -85,26 +81,6 @@ const Footer = () => {
             </li>
             <li>Mon compte</li>
           </ul>
-        </div>
-
-        <div className="footer-col">
-          <h3 className="mb-4 text-lg font-semibold text-white">
-            Abonnez-vous à notre newsletter
-          </h3>
-          <p className="mb-4 text-sm text-white/60">
-            Restez informé de l&apos;actualité, des promotions et des offres exclusives !
-          </p>
-
-          <div className="flex w-full items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-1.5">
-            <input
-              type="email"
-              placeholder="Email"
-              className="input-anime w-full flex-1 rounded-lg bg-transparent px-3 py-2 text-sm text-white outline-none placeholder:text-white/40"
-            />
-            <button className="btn-anime btn-glow shrink-0 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-white">
-              <DecryptedText text="S'abonner" animateOn="hover" speed={60} />
-            </button>
-          </div>
         </div>
       </div>
 

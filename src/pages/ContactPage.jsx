@@ -15,13 +15,13 @@ import { revealStagger } from '../animations/gsap'
 import { initInputFocus, initButtonEffects } from '../animations/microInteractions'
 
 const CONTACT_INFO = [
-  { label: 'Adresse', value: '12, Avenue des Champs-Élysées, 75008 Paris, France' },
-  { label: 'Téléphone', value: '+33 1 23 45 67 89', href: 'tel:+33123456789' },
+  { label: 'Adresse', value: 'Herkat, Bouria, Algérie' },
+  { label: 'Téléphone', value: '05 40 09 99 59', href: 'tel:0540099959' },
   { label: 'Email', value: 'contact@dealership.fr', href: 'mailto:contact@dealership.fr' },
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'Instagram', href: 'https://instagram.com', Icon: InstagramIcon },
+  { label: 'Instagram', href: 'https://www.instagram.com/les_freres_auto_10/', Icon: InstagramIcon },
   { label: 'Facebook', href: 'https://facebook.com', Icon: FacebookIcon },
   { label: 'X', href: 'https://x.com', Icon: XIcon },
   { label: 'YouTube', href: 'https://youtube.com', Icon: YoutubeIcon },
@@ -127,7 +127,7 @@ const ContactPage = () => {
           <div className="contact-card overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2">
             <iframe
               title="Localisation du showroom"
-              src="https://www.google.com/maps?q=12%20Avenue%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris%2C%20France&output=embed"
+              src="https://www.google.com/maps?q=Herkat%2C%20Bouria%2C%20Alg%C3%A9rie&output=embed"
               className="h-[40vh] w-full rounded-xl"
               style={{ border: 0, filter: 'grayscale(1) invert(0.9) hue-rotate(180deg)' }}
               loading="lazy"

@@ -42,7 +42,7 @@ const CarDetailPage = () => {
 
   useEffect(() => {
     const clean = revealStagger({
-      targets: '.spec-card, .detail-reveal',
+      targets: '.spec-card, .detail-reveal, .cards',
       trigger: sectionRef.current,
       y: 50,
       stagger: 0.08,
@@ -137,7 +137,16 @@ const CarDetailPage = () => {
             )}
           </div>
 
-          <p className="mt-6 leading-relaxed text-white/70">{car.description}</p>
+          <SplitText
+            tag="p"
+            text={car.description}
+            splitType="words"
+            delay={25}
+            duration={0.7}
+            from={{ opacity: 0, y: 16 }}
+            textAlign="left"
+            className="mt-6 leading-relaxed text-white/70"
+          />
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <SlideTextButton

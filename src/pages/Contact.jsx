@@ -81,7 +81,7 @@ const Contact = () => {
           <div className="contact-right overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2">
             <iframe
               title="Localisation du showroom"
-              src="https://www.google.com/maps?q=12%20Avenue%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris%2C%20France&output=embed"
+              src="https://www.google.com/maps?q=Herkat%2C%20Bouria%2C%20Alg%C3%A9rie&output=embed"
               className="h-[55vh] w-full rounded-xl"
               style={{ border: 0, filter: 'grayscale(1) invert(0.9) hue-rotate(180deg)' }}
               loading="lazy"
@@ -94,8 +94,8 @@ const Contact = () => {
             <a href="mailto:contact@dealership.fr" className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white">
               <Mail size={16} /> contact@dealership.fr
             </a>
-            <a href="tel:+33123456789" className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white">
-              <Phone size={16} /> +33 1 23 45 67 89
+            <a href="tel:0540099959" className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm text-white/80 hover:border-white/30 hover:bg-white/5 hover:text-white">
+              <Phone size={16} /> 05 40 09 99 59
             </a>
           </div>
         </div>
