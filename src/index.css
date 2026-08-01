@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zen+Dots&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-heading: "Zen Dots", sans-serif;
+  --font-sans: "Outfit", "Poppins", sans-serif;
+  --color-accent: #ffd60a;
+  --color-carbon: #0b0b0d;
+}
+
+/* Activates the `nav-scrolled:` variant when the navbar is shrunk on scroll */
+@custom-variant nav-scrolled (&.nav-scrolled);
+
+body {
+  background-color: var(--color-carbon);
+  color: white;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: black;
+}
+
+html {
+  /* Smooth scrolling is handled by Lenis; this must stay off so it doesn't fight it. */
+  scroll-padding-top: 6rem;
+}
+
+/* ---------- Typography ---------- */
+
+.hero-title,
+.logo,
+.title {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ---------- Hero search bar ---------- */
+
+.list > select {
+  background-color: transparent;
+  padding: 12px 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 200ms ease;
+}
+
+.list > select:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.list > select > option {
+  background-color: #18181b;
+  color: white;
+}
+
+#cars option:checked {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/src/assets/Lamborghini-Logo.png" type="image/png" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DealerShip</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      setTimeout(() => {
+        const o = []
+        o.push('cw=' + document.documentElement.clientWidth)
+        o.push('sw=' + document.documentElement.scrollWidth)
+        const off = document.getElementById('offers')
+        if (off) {
+          const r = off.getBoundingClientRect()
+          o.push('offersL=' + Math.round(r.left) + ' offersR=' + Math.round(r.right))
+        }
+        const hero = document.getElementById('hero')
+        if (hero) {
+          const h1 = hero.querySelector('h1')
+          const r = h1.getBoundingClientRect()
+          o.push('titleL=' + Math.round(r.left) + ' titleR=' + Math.round(r.right) + ' titleW=' + Math.round(r.width))
+          const vis = []
+          hero.querySelectorAll('.split-char').forEach((c, i) => {
+            if (i < 12) vis.push(Math.round(parseFloat(getComputedStyle(c).opacity) * 100) + '%')
+          })
+          o.push('charOpacity: ' + vis.join(','))
+        }
+        const tilt = document.querySelector('.tilted-card-figure')
+        if (tilt) {
+          const r = tilt.getBoundingClientRect()
+          o.push('tiltW=' + Math.round(r.width) + ' tiltH=' + Math.round(r.height))
+        }
+        document.title = o.join(' | ')
+      }, 4000)
+    </script>
+  </body>
+</html>
