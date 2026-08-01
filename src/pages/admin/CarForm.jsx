@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FaArrowLeft, FaSave, FaTimes, FaImage } from 'react-icons/fa';
 import { brands } from '../../data/admin/cars';
 import { useAdmin } from '../../context/AdminContext';
@@ -45,13 +45,23 @@ const emptyForm = {
 export default function AdminCarForm() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const { cars, addCar, updateCar } = useAdmin();
   const isEdit = !!id;
   const existing = isEdit ? cars.find(c => c.id === Number(id)) : null;
+  const prefill = location.state?.prefill || null;
 
   const [form, setForm] = useState(emptyForm);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    if (prefill && !isEdit) {
+      setForm(prev => ({ ...prev, ...prefill }));
+      setSuccess('');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (existing) {

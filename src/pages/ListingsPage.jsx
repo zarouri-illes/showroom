@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CARS, CATEGORIES, CAR_BRANDS, SORT_OPTIONS } from '../data/cars'
 import CarCard from '../components/CarCard'
+import BackButton from '../components/BackButton'
 import SplitText from '../components/reactbits/SplitText'
 import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
@@ -50,6 +51,7 @@ const ListingsPage = () => {
       ref={sectionRef}
       className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:py-28"
     >
+      <BackButton />
       <div className="mb-12 max-w-2xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
           Notre inventaire

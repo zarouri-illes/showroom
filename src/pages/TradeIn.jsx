@@ -81,7 +81,7 @@ const TradeIn = () => {
         {/* Left: copy */}
         <div className="tradein-left">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            <DecryptedText text="04 — Troc & Rachat" animateOn="view" speed={40} />
+            <DecryptedText text="03 — Troc & Rachat" animateOn="view" speed={40} />
           </p>
           <SplitText
             tag="h2"
@@ -115,7 +115,7 @@ const TradeIn = () => {
           <div className="flex flex-wrap items-center gap-4">
             <Link
               to="/operations"
-              className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-black hover:bg-white"
+              className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-black hover:bg-accent-hover"
             >
               <RefreshCw size={15} /> Échanger ma voiture
             </Link>

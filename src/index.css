@@ -20,6 +20,34 @@
 /* Activates the `nav-scrolled:` variant when the navbar is shrunk on scroll */
 @custom-variant nav-scrolled (&.nav-scrolled);
 
+/* ---------- Light theme ----------
+   Tailwind v4 exposes palette colors as CSS variables, so overriding them
+   under `.light` remaps every `text-white`, `bg-white/x`, `border-white/x`,
+   `bg-carbon` and `bg-zinc-900` usage on the landing pages at once. */
+.light {
+  --color-carbon: #f5f5f2;
+  --color-zinc-900: #ffffff;
+  --color-white: #17171b;
+}
+
+.light body {
+  background-color: var(--color-carbon);
+  color: var(--color-white);
+}
+
+/* Landing form controls use hardcoded white text/option backgrounds */
+.light .list > select {
+  color: var(--color-white);
+  border-right-color: rgba(0, 0, 0, 0.12);
+}
+.light .list > select:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.light .list > select > option {
+  background-color: #ffffff;
+  color: #17171b;
+}
+
 body {
   background-color: var(--color-carbon);
   color: white;

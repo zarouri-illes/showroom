@@ -183,7 +183,7 @@ const Reviews = () => {
       <div className="mb-14 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="review-header-left max-w-xl">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-            <DecryptedText text="03 — Avis clients" animateOn="view" speed={40} />
+            <DecryptedText text="04 — Avis clients" animateOn="view" speed={40} />
           </p>
           <SplitText
             tag="h2"

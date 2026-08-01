@@ -1,6 +1,5 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { cars as seedCars } from '../data/admin/cars';
-import { articles as seedArticles } from '../data/admin/articles';
 
 const AdminContext = createContext(null);
 
@@ -10,7 +9,6 @@ const CARS_SEED_VERSION = 'frereauto10-cars-v2';
 const CONTENT_KEY = 'admin_content';
 const RESERVATIONS_KEY = 'admin_reservations';
 const AVIS_KEY = 'admin_avis';
-const ARTICLES_KEY = 'admin_articles';
 const CREDENTIALS_KEY = 'admin_credentials';
 const REQUESTS_KEY = 'admin_requests';
 const REQUESTS_VERSION_KEY = 'admin_requests_version';
@@ -210,11 +208,6 @@ export function AdminProvider({ children }) {
     const saved = loadData(AVIS_KEY, defaultAvis);
     return saved.length > 0 ? Math.max(...saved.map(r => r.id)) + 1 : 1;
   });
-  const [articles, setArticles] = useState(() => loadData(ARTICLES_KEY, seedArticles));
-  const [nextArticleId, setNextArticleId] = useState(() => {
-    const saved = loadData(ARTICLES_KEY, seedArticles);
-    return saved.length > 0 ? Math.max(...saved.map(a => a.id)) + 1 : 1;
-  });
   const [requests, setRequests] = useState(() => {
     const saved = loadData(REQUESTS_KEY, null);
     const savedVersion = loadData(REQUESTS_VERSION_KEY, null);
@@ -239,7 +232,6 @@ export function AdminProvider({ children }) {
   useEffect(() => { persistMerged(RESERVATIONS_KEY, reservations, Array.isArray); }, [reservations]);
   useEffect(() => { localStorage.setItem('admin_next_reservation_id', JSON.stringify(nextReservationId)); }, [nextReservationId]);
   useEffect(() => { persistMerged(AVIS_KEY, avis, Array.isArray); }, [avis]);
-  useEffect(() => { persistMerged(ARTICLES_KEY, articles, Array.isArray); }, [articles]);
   useEffect(() => { persistMerged(REQUESTS_KEY, requests, Array.isArray); }, [requests]);
   useEffect(() => {
     const savedVersion = loadData(REQUESTS_VERSION_KEY, null);
@@ -268,12 +260,6 @@ export function AdminProvider({ children }) {
         setAvis(data);
         setNextAvisId(data.length > 0 ? Math.max(...data.map(r => r.id)) + 1 : 1);
       }
-    } else if (key === ARTICLES_KEY) {
-      const data = safeParse(raw);
-      if (data) {
-        setArticles(data);
-        setNextArticleId(data.length > 0 ? Math.max(...data.map(a => a.id)) + 1 : 1);
-      }
     } else if (key === REQUESTS_KEY) {
       const data = safeParse(raw);
       if (data) setRequests(data);
@@ -286,7 +272,7 @@ export function AdminProvider({ children }) {
   useEffect(() => {
     const onStorage = (e) => {
       if (!e.key || e.newValue === null) return;
-      if ([CARS_KEY, CONTENT_KEY, RESERVATIONS_KEY, AVIS_KEY, ARTICLES_KEY, REQUESTS_KEY, CREDENTIALS_KEY].includes(e.key)) {
+      if ([CARS_KEY, CONTENT_KEY, RESERVATIONS_KEY, AVIS_KEY, REQUESTS_KEY, CREDENTIALS_KEY].includes(e.key)) {
         refreshFromStorage(e.key, e.newValue);
       }
     };
@@ -372,17 +358,6 @@ export function AdminProvider({ children }) {
     setAvis(prev => prev.map(a => a.id === id ? { ...a, visible: !a.visible } : a));
   }, []);
 
-  const addArticle = useCallback((article) => {
-    const newArticle = { ...article, id: nextArticleId, image: article.image || '/images.jfif' };
-    setNextArticleId(prev => prev + 1);
-    setArticles(prev => [...prev, newArticle]);
-    return newArticle;
-  }, [nextArticleId]);
-
-  const deleteArticle = useCallback((id) => {
-    setArticles(prev => prev.filter(a => a.id !== id));
-  }, []);
-
   const addRequest = useCallback((data) => {
     const newRequest = {
       ...data,
@@ -417,7 +392,6 @@ export function AdminProvider({ children }) {
       content, updateContent,
       reservations, addReservation, updateReservation, updateReservationStatus, deleteReservation,
       avis, addAvis, toggleAvisVisibility,
-      articles, addArticle, deleteArticle,
       requests, addRequest, updateRequestStatus, deleteRequest,
       credentials, updateCredentials,
       pendingAvisCount,

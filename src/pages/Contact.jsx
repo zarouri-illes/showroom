@@ -58,7 +58,7 @@ const Contact = () => {
               text="Nous contacter"
               hoverText="Réserver un essai →"
               to="/contact"
-              className="bg-accent text-black hover:bg-white"
+              className="bg-accent text-black hover:bg-accent-hover"
             />
           </div>
 

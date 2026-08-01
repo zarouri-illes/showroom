@@ -62,7 +62,7 @@ const MostSearched = () => {
             text="Voir tout"
             hoverText="Parcourir →"
             to="/listing"
-            className="bg-accent text-black hover:bg-white"
+            className="bg-accent text-black hover:bg-accent-hover"
           />
         </Magnet>
       </div>

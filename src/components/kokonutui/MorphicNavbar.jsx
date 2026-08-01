@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { cn } from "../../lib/utils";
+import { useTheme } from "../../context/ThemeContext";
 import { navbarScrollEffect } from "../../animations/gsap";
 import { openMobileMenu, closeMobileMenu } from "../../animations/microInteractions";
 
@@ -17,6 +18,7 @@ export default function MorphicNavbar() {
   const menuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
+  const { theme, toggleTheme } = useTheme();
 
   // Highlight the link matching the current route.
   const isActive = (to) =>
@@ -74,7 +76,7 @@ export default function MorphicNavbar() {
                 className={cn(
                   "block rounded-xl px-3 py-1.5 text-sm transition-all duration-300",
                   isActive(item.to)
-                    ? "bg-white font-semibold text-black"
+                    ? "bg-accent font-semibold text-black"
                     : "text-white/70 hover:bg-white/5 hover:text-white"
                 )}
               >
@@ -85,6 +87,13 @@ export default function MorphicNavbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <button
+            aria-label={theme === 'light' ? 'Passer en mode sombre' : 'Passer en mode clair'}
+            onClick={toggleTheme}
+            className="btn-glow flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 text-white"
+          >
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+          </button>
           <button
             aria-label="Basculer le menu"
             aria-expanded={menuOpen}
@@ -109,7 +118,7 @@ export default function MorphicNavbar() {
             className={cn(
               "mobile-link rounded-xl px-4 py-3 text-base font-medium",
               isActive(item.to)
-                ? "bg-white font-semibold text-black"
+                ? "bg-accent font-semibold text-black"
                 : "text-white/80 hover:bg-white/5"
             )}
           >

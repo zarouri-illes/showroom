@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { FaEnvelopeOpenText, FaPhone, FaMapMarkerAlt, FaCar, FaTachometerAlt, FaCalendarAlt, FaGasPump, FaCogs, FaClipboardCheck, FaTrash, FaExpand, FaCheckCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaEnvelopeOpenText, FaPhone, FaMapMarkerAlt, FaCar, FaTachometerAlt, FaCalendarAlt, FaGasPump, FaCogs, FaClipboardCheck, FaTrash, FaExpand, FaCheckCircle, FaPlus } from 'react-icons/fa';
 import { useAdmin } from '../../context/AdminContext';
 import AdminLayout from './AdminLayout';
 
@@ -108,7 +109,25 @@ export default function AdminDemandes() {
 }
 
 function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
+  const navigate = useNavigate();
   const meta = STATUS_META[req.status] || STATUS_META.nouvelle;
+  const isVente = (req.operation || '').toLowerCase().includes('vendre');
+
+  const quickAddToInventory = () => {
+    const brandMap = { 'Range Rover': 'Land Rover' };
+    const prefill = {};
+    if (req.marque) prefill.brand = brandMap[req.marque] || req.marque;
+    if (req.modele) prefill.model = req.modele;
+    if (req.annee) prefill.year = Number(req.annee);
+    if (req.kilometrage) prefill.mileage = String(req.kilometrage).replace(/\s/g, '');
+    if (req.carburant) prefill.fuel = req.carburant;
+    if (req.boite) prefill.transmission = req.boite;
+    if (req.message) prefill.description = req.message;
+    if (req.photos && req.photos.length) prefill.images = [...req.photos];
+    if (prefill.brand && prefill.model) prefill.name = `${prefill.brand} ${prefill.model}`;
+    navigate('/admin/cars/new', { state: { prefill } });
+  };
+
   const infoItems = [
     req.annee && { icon: FaCalendarAlt, label: 'Année', value: req.annee },
     req.kilometrage && { icon: FaTachometerAlt, label: 'Kilométrage', value: `${req.kilometrage} km` },
@@ -228,17 +247,25 @@ function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
         </div>
       )}
 
-      {/* Mark done shortcut */}
-      {req.status !== 'terminee' && (
-        <div className="mt-4 flex justify-end">
+      {/* Actions */}
+      <div className="mt-4 flex flex-wrap justify-end gap-2">
+        {isVente && (
+          <button
+            onClick={quickAddToInventory}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-black bg-accent hover:bg-white transition-all cursor-pointer"
+          >
+            <FaPlus size={12} /> Ajouter à l&apos;inventaire
+          </button>
+        )}
+        {req.status !== 'terminee' && (
           <button
             onClick={() => onStatus(req.id, 'terminee')}
             className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-white/50 bg-white/5 border border-white/10 hover:text-green-400 hover:bg-green-500/10 hover:border-green-400/40 transition-all cursor-pointer"
           >
             <FaCheckCircle size={12} /> Marquer comme terminée
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </article>
   );
 }

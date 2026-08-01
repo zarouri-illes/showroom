@@ -15,6 +15,7 @@ import {
   Check,
   ShieldCheck,
 } from 'lucide-react'
+import BackButton from '../components/BackButton'
 import SpotlightCard from '../components/kokonutui/SpotlightCard'
 import SplitText from '../components/reactbits/SplitText'
 import DecryptedText from '../components/reactbits/DecryptedText'
@@ -232,6 +233,7 @@ const OperationsPage = () => {
 
   return (
     <section ref={sectionRef} id="operations-page" className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:py-28">
+      <BackButton />
       {/* Header */}
       <div className="operations-header mb-16 max-w-2xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
@@ -371,7 +373,7 @@ const OperationsPage = () => {
             </div>
             <a
               href="tel:0540099959"
-              className="btn-anime btn-glow inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-black transition-colors hover:bg-white"
+              className="btn-anime btn-glow inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-black transition-colors hover:bg-accent-hover"
             >
               <Phone size={16} /> 05 40 09 99 59
             </a>
@@ -575,7 +577,7 @@ const OperationsPage = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="btn-anime btn-glow mt-1 flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-80"
+            className="btn-anime btn-glow mt-1 flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-80"
           >
             {submitting ? (
               <>
@@ -613,7 +615,7 @@ const OperationsPage = () => {
         <Magnet magnetStrength={6}>
           <a
             href="/contact"
-            className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-white"
+            className="btn-anime btn-glow inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3 font-semibold text-black transition-colors hover:bg-accent-hover"
           >
             Prendre rendez-vous <ArrowRight size={16} />
           </a>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaTachometerAlt, FaCar, FaShareAlt, FaStar, FaNewspaper, FaEnvelopeOpenText, FaBars, FaTimes, FaHome, FaSignOutAlt, FaUserCog } from 'react-icons/fa';
+import { FaTachometerAlt, FaCar, FaShareAlt, FaStar, FaEnvelopeOpenText, FaBars, FaTimes, FaHome, FaSignOutAlt, FaUserCog } from 'react-icons/fa';
 import { useAdmin } from '../../context/AdminContext';
 
 const navItems = [
@@ -9,7 +9,6 @@ const navItems = [
   { path: '/admin/demandes', label: 'Demandes', icon: FaEnvelopeOpenText },
   { path: '/admin/social', label: 'Réseaux sociaux', icon: FaShareAlt },
   { path: '/admin/avis', label: 'Avis clients', icon: FaStar },
-  { path: '/admin/actualites', label: 'Actualites', icon: FaNewspaper },
   { path: '/admin/account', label: 'Compte', icon: FaUserCog },
 ];
 

@@ -4,6 +4,7 @@ import './App.css'
 import Layout from './components/Layout'
 import PageLoader from './components/ui/PageLoader'
 import { AdminProvider } from './context/AdminContext'
+import { ThemeProvider } from './context/ThemeContext'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ListingsPage = lazy(() => import('./pages/ListingsPage'))
@@ -17,14 +18,14 @@ const AdminCars = lazy(() => import('./pages/admin/Cars'))
 const AdminCarForm = lazy(() => import('./pages/admin/CarForm'))
 const AdminSocial = lazy(() => import('./pages/admin/Social'))
 const AdminAvis = lazy(() => import('./pages/admin/Avis'))
-const AdminActualites = lazy(() => import('./pages/admin/Actualites'))
 const AdminDemandes = lazy(() => import('./pages/admin/Demandes'))
 const AdminAccount = lazy(() => import('./pages/admin/Account'))
 
 function App() {
   return (
-    <AdminProvider>
-      <BrowserRouter>
+    <ThemeProvider>
+      <AdminProvider>
+        <BrowserRouter>
         <Routes>
           <Route path="/admin/login" element={<Suspense fallback={<PageLoader />}><AdminLogin /></Suspense>} />
           <Route path="/admin" element={<Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense>} />
@@ -33,7 +34,6 @@ function App() {
           <Route path="/admin/cars/:id/edit" element={<Suspense fallback={<PageLoader />}><AdminCarForm /></Suspense>} />
           <Route path="/admin/social" element={<Suspense fallback={<PageLoader />}><AdminSocial /></Suspense>} />
           <Route path="/admin/avis" element={<Suspense fallback={<PageLoader />}><AdminAvis /></Suspense>} />
-          <Route path="/admin/actualites" element={<Suspense fallback={<PageLoader />}><AdminActualites /></Suspense>} />
           <Route path="/admin/demandes" element={<Suspense fallback={<PageLoader />}><AdminDemandes /></Suspense>} />
           <Route path="/admin/account" element={<Suspense fallback={<PageLoader />}><AdminAccount /></Suspense>} />
           <Route element={<Layout />}>
@@ -45,8 +45,9 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
-      </BrowserRouter>
-    </AdminProvider>
+        </BrowserRouter>
+      </AdminProvider>
+    </ThemeProvider>
   )
 }
 

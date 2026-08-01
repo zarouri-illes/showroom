@@ -153,7 +153,7 @@ const CarDetailPage = () => {
               text="Nous contacter"
               hoverText="Réserver un essai →"
               to="/contact"
-              className="bg-accent text-black hover:bg-white"
+              className="bg-accent text-black hover:bg-accent-hover"
             />
             <a
               href={`mailto:contact@dealership.fr?subject=Demande pour ${car.name}`}

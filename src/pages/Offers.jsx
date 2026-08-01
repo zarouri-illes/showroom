@@ -128,7 +128,7 @@ const Offers = () => {
               text="Explorer plus"
               hoverText="C'est parti →"
               to="/listing"
-              className="bg-accent text-black hover:bg-white"
+              className="bg-accent text-black hover:bg-accent-hover"
             />
           </Magnet>
         </div>
