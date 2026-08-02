@@ -226,20 +226,20 @@ export default function AdminCarForm() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-white/50 mb-1">Localisation</label>
-                <input type="text" value={form.location} onChange={e => set('location', e.target.value)} placeholder="Ex: Herkat, Bouria, Algérie" className={inputBase} />
+                <input type="text" value={form.location} onChange={e => set('location', e.target.value)} placeholder="Ex: Bouira, Algérie" className={inputBase} />
               </div>
             </div>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 space-y-4">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Prix</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.22em] text-accent">Tarif de location</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-white/50 mb-1">Prix * (DA)</label>
-                <input type="number" value={form.price} onChange={e => set('price', e.target.value)} placeholder="Ex: 5350000" className={inputBase} />
+                <label className="block text-sm font-medium text-white/50 mb-1">Prix / jour * (DA)</label>
+                <input type="number" value={form.price} onChange={e => set('price', e.target.value)} placeholder="Ex: 45000" className={inputBase} />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white/50 mb-1">Ancien prix (DA)</label>
+                <label className="block text-sm font-medium text-white/50 mb-1">Ancien prix / jour (DA)</label>
                 <input type="number" value={form.oldPrice} onChange={e => set('oldPrice', e.target.value)} placeholder="Laissez vide si aucun" className={inputBase} />
               </div>
             </div>

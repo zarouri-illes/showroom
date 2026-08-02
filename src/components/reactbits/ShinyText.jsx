@@ -101,12 +101,14 @@ const ShinyText = ({
     <motion.span
       className={`shiny-text ${className}`}
       style={{ ...gradientStyle, backgroundPosition }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay, ease: 'easeOut' }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {text}
     </motion.span>
-  )
-}
+  )}
 
 export default ShinyText

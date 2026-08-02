@@ -15,8 +15,8 @@ import { revealStagger } from '../animations/gsap'
 import { initInputFocus, initButtonEffects } from '../animations/microInteractions'
 
 const CONTACT_INFO = [
-  { label: 'Adresse', value: 'Herkat, Bouria, Algérie' },
-  { label: 'Téléphone', value: '05 40 09 99 59', href: 'tel:0540099959' },
+  { label: 'Adresse', value: 'En face AB park, Bouira, Algérie, 10000' },
+  { label: 'Téléphone', value: '05 42 13 06 23', href: 'tel:0542130623' },
   { label: 'Email', value: 'contact@dealership.fr', href: 'mailto:contact@dealership.fr' },
 ]
 
@@ -90,7 +90,7 @@ const ContactPage = () => {
         <div className="flex flex-col gap-5">
           <div className="contact-card grid gap-4 sm:grid-cols-1">
             {CONTACT_INFO.map((item) => (
-              <SpotlightCard key={item.label} className="contact-card" accent="#3b82f6">
+              <SpotlightCard key={item.label} className="contact-card" accent="#e11d2e">
                 <p className="text-xs uppercase tracking-widest text-white/40">{item.label}</p>
                 {item.href ? (
                   <a href={item.href} className="mt-2 text-lg font-semibold text-white transition-colors hover:text-accent">
@@ -127,7 +127,7 @@ const ContactPage = () => {
           <div className="contact-card overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-2">
             <iframe
               title="Localisation du showroom"
-              src="https://www.google.com/maps?q=Herkat%2C%20Bouria%2C%20Alg%C3%A9rie&output=embed"
+              src="https://www.google.com/maps?q=En%20face%20AB%20park%2C%20Bouira%2C%20Algeria%2010000&output=embed"
               className="h-[40vh] w-full rounded-xl"
               style={{ border: 0, filter: 'grayscale(1) invert(0.9) hue-rotate(180deg)' }}
               loading="lazy"

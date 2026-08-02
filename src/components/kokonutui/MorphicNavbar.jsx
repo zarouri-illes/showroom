@@ -5,11 +5,11 @@ import { cn } from "../../lib/utils";
 import { useTheme } from "../../context/ThemeContext";
 import { navbarScrollEffect } from "../../animations/gsap";
 import { openMobileMenu, closeMobileMenu } from "../../animations/microInteractions";
-
 const LINKS = [
   { label: "Accueil", to: "/" },
   { label: "Inventaire", to: "/listing" },
-  { label: "Échange & Vente", to: "/operations" },
+  { label: "Services", to: "/services" },
+  { label: "Échange / Vente", to: "/echange-vente" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -64,8 +64,8 @@ export default function MorphicNavbar() {
           "nav-scrolled:border-white/15 nav-scrolled:bg-zinc-900/90"
         )}
       >
-        <Link to="/" className="logo whitespace-nowrap text-lg font-extrabold tracking-wider text-white sm:text-xl">
-          momo auto
+        <Link to="/" className="logo flex items-center gap-2 whitespace-nowrap text-lg font-extrabold tracking-wider text-white sm:text-xl">
+          fr<span className="text-accent">_auto</span>
         </Link>
 
         <ul className="hidden items-center gap-1 md:flex">

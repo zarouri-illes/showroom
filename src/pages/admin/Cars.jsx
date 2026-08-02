@@ -6,7 +6,7 @@ import AdminLayout from './AdminLayout';
 import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 
 const fr = (v) => Number(v || 0).toLocaleString('fr-FR');
-const da = (v) => `${fr(v)} DA`;
+const da = (v) => `${fr(v)} DA / jour`;
 
 const categoryLabels = { new: 'Neuf', used: 'Occasion', stock: 'En stock' };
 
@@ -103,7 +103,7 @@ export default function AdminCars() {
         >
           <option value="">Tous les statuts</option>
           <option value="disponible">Disponible</option>
-          <option value="vendue">Vendue</option>
+          <option value="louee">Louée</option>
         </select>
       </div>
 
@@ -118,8 +118,8 @@ export default function AdminCars() {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <div className="relative w-full sm:w-36 h-36 sm:h-28 rounded-xl overflow-hidden bg-dark-bg flex-shrink-0">
                   <ImageWithSkeleton src={car.images[0]} alt={`${car.brand} ${car.model}`} className="w-full h-full" />
-                  {car.status === 'vendue' ? (
-                    <span className="absolute left-2 top-2 rounded-full bg-blue-400 px-2.5 py-0.5 text-[10px] font-bold text-black">Vendue</span>
+                  {car.status === 'louee' ? (
+                    <span className="absolute left-2 top-2 rounded-full bg-blue-400 px-2.5 py-0.5 text-[10px] font-bold text-black">Louée</span>
                   ) : (
                     <span className="absolute left-2 top-2 rounded-full bg-success px-2.5 py-0.5 text-[10px] font-bold text-black">Disponible</span>
                   )}
@@ -185,14 +185,14 @@ export default function AdminCars() {
                         Disponible
                       </button>
                       <button
-                        onClick={() => changeStatus(car, 'vendue')}
+                        onClick={() => changeStatus(car, 'louee')}
                         className={`px-3 py-1 rounded-full text-[11px] font-bold transition-all cursor-pointer ${
-                          car.status === 'vendue'
+                          car.status === 'louee'
                             ? 'bg-blue-400/20 text-blue-400'
                             : 'text-white/40 hover:text-white'
                         }`}
                       >
-                        Vendue
+                        Louée
                       </button>
                     </div>
 

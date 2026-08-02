@@ -9,7 +9,8 @@ import { ThemeProvider } from './context/ThemeContext'
 const HomePage = lazy(() => import('./pages/HomePage'))
 const ListingsPage = lazy(() => import('./pages/ListingsPage'))
 const CarDetailPage = lazy(() => import('./pages/CarDetailPage'))
-const OperationsPage = lazy(() => import('./pages/OperationsPage'))
+const ServicesPage = lazy(() => import('./pages/ServicesPage'))
+const EchangeVentePage = lazy(() => import('./pages/EchangeVentePage'))
 const ContactPage = lazy(() => import('./pages/ContactPage'))
 
 const AdminLogin = lazy(() => import('./pages/admin/Login'))
@@ -40,7 +41,8 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/listing" element={<ListingsPage />} />
             <Route path="/listing/:id" element={<CarDetailPage />} />
-            <Route path="/operations" element={<OperationsPage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/echange-vente" element={<EchangeVentePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>

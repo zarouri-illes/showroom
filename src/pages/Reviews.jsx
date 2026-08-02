@@ -33,7 +33,7 @@ const REVIEWS = [
     car: 'Audi Q2 2024',
     rating: 5,
     initials: 'FZ',
-    text: "Un grand merci à Les Frères Auto pour leur professionnalisme. J'ai été conseillée au mieux pour choisir le véhicule adapté à mes besoins.",
+    text: "Un grand merci à gts auto pour leur professionnalisme. J'ai été conseillée au mieux pour choisir le véhicule adapté à mes besoins.",
   },
   {
     name: 'Amine K.',
@@ -196,7 +196,7 @@ const Reviews = () => {
           />
           <p className="mt-6 text-white/60">
             Des centaines de clients satisfaits dans toute la région. Voici
-            quelques-unes de leurs expériences avec Les Frères Auto.
+            quelques-unes de leurs expériences avec gts auto.
           </p>
         </div>
 

@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import SpotlightCard from './kokonutui/SpotlightCard'
 import SmartImage from './ui/SmartImage'
-import { formatPrice } from '../data/cars'
 
 const CarCard = ({ car }) => {
-  const { id, image, brand, model, year, location, fuel, transmission, mileage, price, oldPrice, badge } = car
+  const { id, image, brand, model, year, location, fuel, transmission, mileage, badge } = car
 
   return (
-    <SpotlightCard className="cards h-full" accent="#3b82f6">
+    <SpotlightCard className="cards h-full" accent="#e11d2e">
       <div className="relative mb-4 overflow-hidden rounded-xl bg-white/5">
         <SmartImage
           src={image}
@@ -38,15 +38,13 @@ const CarCard = ({ car }) => {
           <span>{transmission}</span>
         </div>
 
-        <div className="mt-4 flex items-center justify-between">
-          <div>
-            {oldPrice > price && (
-              <p className="text-xs text-white/40 line-through">{formatPrice(oldPrice)}</p>
-            )}
-            <p className="text-lg font-semibold text-white">{formatPrice(price)}</p>
-          </div>
-          <Link to={`/listing/${id}`} className="text-sm font-medium text-accent hover:underline">
+        <div className="mt-5">
+          <Link
+            to={`/listing/${id}`}
+            className="btn-anime btn-glow group flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-bold text-black transition-colors hover:bg-accent-hover"
+          >
             Voir les détails
+            <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

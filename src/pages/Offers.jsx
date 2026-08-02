@@ -54,6 +54,14 @@ const Offers = () => {
       start: 'top 80%',
     })
 
+    const cleanOffers = revealStagger({
+      targets: '.offer-item',
+      trigger: sectionRef.current,
+      y: 40,
+      stagger: 0.12,
+      start: 'top 85%',
+    })
+
     const cleanCount = countUp({
       target: '.stat-num',
       to: 500,
@@ -65,6 +73,7 @@ const Offers = () => {
     return () => {
       cleanIcons()
       cleanBox()
+      cleanOffers()
       cleanCount()
       cleanBtns()
       ctx.revert()
@@ -115,7 +124,7 @@ const Offers = () => {
             {OFFERS.map((item) => (
               <div
                 key={item.number}
-                className="flex items-start gap-5 border-b border-white/10 py-4"
+                className="offer-item flex items-start gap-5 border-b border-white/10 py-4"
               >
                 <span className="text-sm font-semibold text-white/40">{item.number}</span>
                 <p className="text-white/80">{item.text}</p>
@@ -153,7 +162,7 @@ const Offers = () => {
             </div>
           </SpotlightCard>
 
-          <SpotlightCard className="min-h-[320px] justify-center" accent="#3b82f6">
+          <SpotlightCard className="min-h-[320px] justify-center" accent="#e11d2e">
             <SmartImage
               src={boxTwoImg}
               alt="Lamborghini Urus"

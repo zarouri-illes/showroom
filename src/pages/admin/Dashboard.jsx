@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FaCheckCircle, FaChartBar, FaCalendarCheck, FaStar, FaEye, FaCoins,
-  FaExclamationTriangle, FaClock, FaCar, FaPlus, FaChevronDown, FaChevronUp, FaEnvelopeOpenText,
+  FaExclamationTriangle, FaClock, FaCar, FaPlus, FaChevronDown, FaChevronUp, FaEnvelopeOpenText, FaExchangeAlt,
 } from 'react-icons/fa';
 import { useAdmin, isStaleStock, daysSince } from '../../context/AdminContext';
 import AdminLayout from './AdminLayout';
@@ -10,38 +10,50 @@ import SalesChart from '../../components/SalesChart';
 import ImageWithSkeleton from '../../components/ImageWithSkeleton';
 
 const fr = (v) => Number(v || 0).toLocaleString('fr-FR');
-const da = (v) => `${fr(v)} DA`;
+const da = (v) => `${fr(v)} DA / jour`;
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
-  const { stats, cars, reservations, pendingAvisCount, newRequestsCount } = useAdmin();
+  const { cars, reservations, requests, pendingAvisCount, newRequestsCount } = useAdmin();
   const [openId, setOpenId] = useState(null);
 
-  const stockValue = cars
+  const rentalFleet = cars
     .filter(c => c.status === 'disponible' || !c.status)
     .reduce((sum, c) => sum + (Number(c.price) || 0), 0);
 
-  const monthStart = new Date();
-  monthStart.setDate(1);
-  monthStart.setHours(0, 0, 0, 0);
-  const salesThisMonth = cars.filter(
-    c => c.status === 'vendue' && c.soldDate && new Date(c.soldDate) >= monthStart
-  ).length;
+  const availableCount = cars.filter(c => c.status === 'disponible' || !c.status).length;
+  const rentedCount = cars.filter(c => c.status === 'louee').length;
 
   const pendingReservations = reservations.filter(r => r.status === 'en attente').length;
   const totalViews = cars.reduce((s, c) => s + (c.views || 0), 0);
 
+  const requestsThisMonth = requests.filter(r => {
+    if (!r.date) return false;
+    const d = new Date(r.date);
+    const now = new Date();
+    return d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  }).length;
+
+  const echangeRequests = requests.filter(r =>
+    (r.service && String(r.service).toLowerCase().includes('echange')) ||
+    (r.service === 'echange')
+  ).length;
+
+  const locationRequests = requests.filter(r => r.service === 'location').length;
+  const totalServiceRequests = requests.length;
+
   const statCards = [
-    { label: 'Disponibles', value: fr(stats.disponibles), hint: 'prêtes à la vente', icon: FaCheckCircle, color: 'text-accent', bg: 'bg-accent/10', ring: 'ring-accent/20' },
-    { label: 'Ventes du mois', value: fr(salesThisMonth), hint: 'depuis le début du mois', icon: FaChartBar, color: 'text-emerald-400', bg: 'bg-emerald-400/10', ring: 'ring-emerald-400/20' },
+    { label: 'Voitures disponibles', value: fr(availableCount), hint: 'à la location', icon: FaCheckCircle, color: 'text-accent', bg: 'bg-accent/10', ring: 'ring-accent/20' },
+    { label: 'Voitures louées', value: fr(rentedCount), hint: 'en ce moment', icon: FaCar, color: 'text-emerald-400', bg: 'bg-emerald-400/10', ring: 'ring-emerald-400/20' },
     { label: 'Réservations en attente', value: fr(pendingReservations), hint: 'à confirmer', icon: FaCalendarCheck, color: 'text-sky-400', bg: 'bg-sky-400/10', ring: 'ring-sky-400/20' },
+    { label: 'Demandes services', value: fr(requestsThisMonth), hint: 'ce mois-ci', icon: FaEnvelopeOpenText, color: 'text-yellow-400', bg: 'bg-yellow-400/10', ring: 'ring-yellow-400/20' },
+    { label: 'Demandes échange/vente', value: fr(echangeRequests), hint: 'estimation & reprise', icon: FaExchangeAlt, color: 'text-violet-400', bg: 'bg-violet-400/10', ring: 'ring-violet-400/20' },
     { label: 'Avis à valider', value: fr(pendingAvisCount), hint: 'en modération', icon: FaStar, color: 'text-violet-400', bg: 'bg-violet-400/10', ring: 'ring-violet-400/20' },
-    { label: 'Nouvelles demandes', value: fr(newRequestsCount), hint: 'échange / vente à traiter', icon: FaEnvelopeOpenText, color: 'text-yellow-400', bg: 'bg-yellow-400/10', ring: 'ring-yellow-400/20' },
     { label: 'Vues des annonces', value: fr(totalViews), hint: 'sur tout le stock', icon: FaEye, color: 'text-amber-400', bg: 'bg-amber-400/10', ring: 'ring-amber-400/20' },
-    { label: 'Valeur du stock', value: da(stockValue), hint: 'véhicules disponibles', icon: FaCoins, color: 'text-pink-400', bg: 'bg-pink-400/10', ring: 'ring-pink-400/20' },
+    { label: 'Revenu locatif / jour', value: da(rentalFleet), hint: 'fleet au complet', icon: FaCoins, color: 'text-pink-400', bg: 'bg-pink-400/10', ring: 'ring-pink-400/20' },
   ];
 
-  const soldCars = cars.filter(c => c.status === 'vendue');
+  const rentedCars = cars.filter(c => c.status === 'louee');
   const topViewed = [...cars]
     .sort((a, b) => (b.views || 0) - (a.views || 0))
     .slice(0, 5);
@@ -58,7 +70,7 @@ export default function AdminDashboard() {
         </p>
         <h1 className="title text-3xl text-white sm:text-4xl">Tableau de bord</h1>
         <p className="mt-2 text-white/50">
-          Bienvenue dans votre espace d&apos;administration. Retrouvez ici les chiffres clés de votre showroom.
+          Bienvenue dans votre espace d&apos;administration. Retrouvez ici les chiffres clés de la location et de vos services.
         </p>
       </div>
 
@@ -76,8 +88,38 @@ export default function AdminDashboard() {
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 mb-10">
+        <h2 className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-accent flex items-center gap-2">
+          <FaEnvelopeOpenText size={13} /> Répartition des demandes services
+        </h2>
+        <div className="flex items-center justify-between gap-3 text-sm">
+          <span className="inline-flex items-center gap-2 text-white/70">
+            <FaCar className="text-sky-400" size={13} /> Location
+          </span>
+          <span className="font-bold text-white">{fr(locationRequests)}</span>
+        </div>
+        <div className="mt-2 h-2.5 rounded-full bg-white/5 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-sky-400 transition-all duration-700"
+            style={{ width: `${totalServiceRequests ? Math.round((locationRequests / totalServiceRequests) * 100) : 0}%` }}
+          />
+        </div>
+        <div className="mt-5 flex items-center justify-between gap-3 text-sm">
+          <span className="inline-flex items-center gap-2 text-white/70">
+            <FaExchangeAlt className="text-violet-400" size={13} /> Échange &amp; Vente
+          </span>
+          <span className="font-bold text-white">{fr(echangeRequests)}</span>
+        </div>
+        <div className="mt-2 h-2.5 rounded-full bg-white/5 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-violet-400 transition-all duration-700"
+            style={{ width: `${totalServiceRequests ? Math.round((echangeRequests / totalServiceRequests) * 100) : 0}%` }}
+          />
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 mb-10">
         <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent flex items-center gap-2">
-          <FaChartBar size={13} /> Évolution des ventes
+          <FaChartBar size={13} /> Évolution des réservations
         </h2>
         <SalesChart reservations={reservations} cars={cars} />
       </div>
@@ -144,12 +186,12 @@ export default function AdminDashboard() {
         </div>
 
         <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-5">
-          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">Dernières ventes</h2>
-          {soldCars.length === 0 ? (
-            <p className="text-sm text-white/50">Aucune voiture vendue pour le moment.</p>
+          <h2 className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-accent">Voitures louées</h2>
+          {rentedCars.length === 0 ? (
+            <p className="text-sm text-white/50">Aucune voiture louée pour le moment.</p>
           ) : (
             <div className="space-y-1">
-              {soldCars.map(car => (
+              {rentedCars.map(car => (
                 <div key={car.id}>
                   <button
                     onClick={() => setOpenId(openId === car.id ? null : car.id)}

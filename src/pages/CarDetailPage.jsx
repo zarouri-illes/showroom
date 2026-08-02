@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { Gauge, Rocket, Timer, Armchair, Fuel, Settings2, Milestone, Cog, Palette } from 'lucide-react'
-import { CARS, getCarById, formatPrice } from '../data/cars'
+import { CARS, getCarById } from '../data/cars'
 import CarCard from '../components/CarCard'
 import SpotlightCard from '../components/kokonutui/SpotlightCard'
 import SlideTextButton from '../components/kokonutui/SlideTextButton'
@@ -131,27 +131,22 @@ const CarDetailPage = () => {
           </p>
 
           <div className="mt-6 flex items-end gap-4">
-            <p className="text-4xl font-bold text-accent">{formatPrice(car.price)}</p>
-            {car.oldPrice > car.price && (
-              <p className="mb-1 text-lg text-white/40 line-through">{formatPrice(car.oldPrice)}</p>
-            )}
+            <SplitText
+              tag="p"
+              text={car.description}
+              splitType="words"
+              delay={25}
+              duration={0.7}
+              from={{ opacity: 0, y: 16 }}
+              textAlign="left"
+              className="mt-6 leading-relaxed text-white/70"
+            />
           </div>
-
-          <SplitText
-            tag="p"
-            text={car.description}
-            splitType="words"
-            delay={25}
-            duration={0.7}
-            from={{ opacity: 0, y: 16 }}
-            textAlign="left"
-            className="mt-6 leading-relaxed text-white/70"
-          />
 
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <SlideTextButton
-              text="Nous contacter"
-              hoverText="Réserver un essai →"
+              text="Réserver ce véhicule"
+              hoverText="Vérifier les disponibilités →"
               to="/contact"
               className="bg-accent text-black hover:bg-accent-hover"
             />

@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaEnvelopeOpenText, FaPhone, FaMapMarkerAlt, FaCar, FaTachometerAlt, FaCalendarAlt, FaGasPump, FaCogs, FaClipboardCheck, FaTrash, FaExpand, FaCheckCircle, FaPlus } from 'react-icons/fa';
+import { FaEnvelopeOpenText, FaPhone, FaMapMarkerAlt, FaCalendarAlt, FaClock, FaCar, FaExchangeAlt, FaCheckCircle, FaTrash } from 'react-icons/fa';
 import { useAdmin } from '../../context/AdminContext';
 import AdminLayout from './AdminLayout';
+
+const SERVICE_META = {
+  location: { label: 'Location', icon: FaCar, cls: 'bg-sky-500/15 text-sky-400 border-sky-500/30' },
+  echange: { label: 'Échange & Vente', icon: FaExchangeAlt, cls: 'bg-violet-500/15 text-violet-400 border-violet-500/30' },
+};
 
 const STATUS_META = {
   nouvelle: { label: 'Nouvelle', cls: 'bg-yellow-500/15 text-yellow-400' },
@@ -18,32 +22,40 @@ const STATUS_OPTIONS = [
   { value: 'terminee', label: 'Terminée' },
 ];
 
-const countBy = (requests, status) => requests.filter(r => r.status === status).length;
+const countBy = (requests, key, value) => requests.filter(r => r[key] === value).length;
 
 export default function AdminDemandes() {
   const { requests, updateRequestStatus, deleteRequest } = useAdmin();
-  const [filter, setFilter] = useState('all');
-  const [lightbox, setLightbox] = useState(null);
+  const [serviceFilter, setServiceFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
 
-  const filtered = (filter === 'all' ? requests : requests.filter(r => r.status === filter))
+  const filtered = requests
+    .filter(r => (serviceFilter === 'all' ? true : r.service === serviceFilter))
+    .filter(r => (statusFilter === 'all' ? true : r.status === statusFilter))
     .slice()
     .sort((a, b) => (b.id || 0) - (a.id || 0));
 
-  const tabs = [
-    { value: 'all', label: `Toutes (${requests.length})` },
-    ...STATUS_OPTIONS.map(s => ({ value: s.value, label: `${s.label} (${countBy(requests, s.value)})` })),
+  const serviceTabs = [
+    { value: 'all', label: `Tous les services (${requests.length})` },
+    { value: 'location', label: `Location (${countBy(requests, 'service', 'location')})` },
+    { value: 'echange', label: `Échange & Vente (${countBy(requests, 'service', 'echange')})` },
+  ];
+
+  const statusTabs = [
+    { value: 'all', label: 'Tous les statuts' },
+    ...STATUS_OPTIONS.map(s => ({ value: s.value, label: s.label })),
   ];
 
   return (
     <AdminLayout>
       <div className="mb-8 max-w-2xl">
         <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-accent">
-          Échange & vente
+          Services
         </p>
         <h1 className="title text-3xl text-white sm:text-4xl">Demandes reçues</h1>
         <p className="mt-2 text-white/50">
-          Les formulaires soumis par les clients sur la page « Échange & vente »,
-          avec leurs photos et toutes les informations du véhicule.
+          Les demandes de location de voiture et d'échange &amp; vente envoyées depuis
+          les pages « Services » et « Échange / Vente », avec toutes leurs informations.
         </p>
       </div>
 
@@ -52,20 +64,36 @@ export default function AdminDemandes() {
           <FaEnvelopeOpenText className="mx-auto mb-4 text-white/30" size={32} />
           <p className="text-white/60">Aucune demande pour le moment.</p>
           <p className="mt-1 text-sm text-white/40">
-            Les formulaires envoyés depuis la page Échange & vente apparaîtront ici.
+            Les formulaires envoyés depuis la page Services apparaîtront ici.
           </p>
         </div>
       ) : (
         <>
           <div className="flex flex-wrap gap-2 mb-8">
-            {tabs.map(tab => (
+            {serviceTabs.map(tab => (
               <button
                 key={tab.value}
-                onClick={() => setFilter(tab.value)}
+                onClick={() => setServiceFilter(tab.value)}
                 className={`px-4 py-2 rounded-xl text-sm transition-all cursor-pointer ${
-                  filter === tab.value
+                  serviceFilter === tab.value
                     ? 'bg-accent text-black font-semibold'
                     : 'bg-white/[0.02] border border-white/10 text-white/60 hover:border-accent/40 hover:text-white'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2 mb-6">
+            {statusTabs.map(tab => (
+              <button
+                key={tab.value}
+                onClick={() => setStatusFilter(tab.value)}
+                className={`px-3 py-1.5 rounded-lg text-xs transition-all cursor-pointer ${
+                  statusFilter === tab.value
+                    ? 'bg-white/10 text-white'
+                    : 'bg-transparent text-white/40 hover:text-white/70'
                 }`}
               >
                 {tab.label}
@@ -83,58 +111,20 @@ export default function AdminDemandes() {
                   req={req}
                   onStatus={updateRequestStatus}
                   onDelete={deleteRequest}
-                  onOpenPhoto={setLightbox}
                 />
               ))}
             </div>
           )}
         </>
       )}
-
-      {lightbox && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4" onClick={() => setLightbox(null)}>
-          <div className="max-w-4xl w-full" onClick={e => e.stopPropagation()}>
-            <img src={lightbox} alt="Photo du véhicule" className="w-full max-h-[80vh] object-contain rounded-2xl" />
-            <button
-              onClick={() => setLightbox(null)}
-              className="mt-4 mx-auto flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent text-black text-sm font-semibold hover:bg-white transition-all cursor-pointer"
-            >
-              Fermer
-            </button>
-          </div>
-        </div>
-      )}
     </AdminLayout>
   );
 }
 
-function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
-  const navigate = useNavigate();
+function DemandeCard({ req, onStatus, onDelete }) {
   const meta = STATUS_META[req.status] || STATUS_META.nouvelle;
-  const isVente = (req.operation || '').toLowerCase().includes('vendre');
-
-  const quickAddToInventory = () => {
-    const brandMap = { 'Range Rover': 'Land Rover' };
-    const prefill = {};
-    if (req.marque) prefill.brand = brandMap[req.marque] || req.marque;
-    if (req.modele) prefill.model = req.modele;
-    if (req.annee) prefill.year = Number(req.annee);
-    if (req.kilometrage) prefill.mileage = String(req.kilometrage).replace(/\s/g, '');
-    if (req.carburant) prefill.fuel = req.carburant;
-    if (req.boite) prefill.transmission = req.boite;
-    if (req.message) prefill.description = req.message;
-    if (req.photos && req.photos.length) prefill.images = [...req.photos];
-    if (prefill.brand && prefill.model) prefill.name = `${prefill.brand} ${prefill.model}`;
-    navigate('/admin/cars/new', { state: { prefill } });
-  };
-
-  const infoItems = [
-    req.annee && { icon: FaCalendarAlt, label: 'Année', value: req.annee },
-    req.kilometrage && { icon: FaTachometerAlt, label: 'Kilométrage', value: `${req.kilometrage} km` },
-    req.carburant && { icon: FaGasPump, label: 'Carburant', value: req.carburant },
-    req.boite && { icon: FaCogs, label: 'Boîte', value: req.boite },
-    req.etat && { icon: FaClipboardCheck, label: 'État', value: req.etat },
-  ].filter(Boolean);
+  const serviceMeta = SERVICE_META[req.service] || { label: req.service || 'Service', icon: FaCar, cls: 'bg-white/5 text-white/60 border-white/10' };
+  const ServiceIcon = serviceMeta.icon;
 
   return (
     <article className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6">
@@ -149,7 +139,9 @@ function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
               {req.nom || 'Client sans nom'}
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${meta.cls}`}>{meta.label}</span>
             </p>
-            <p className="text-xs text-white/50 mt-0.5">{req.date}</p>
+            <p className="text-xs text-white/50 mt-0.5 flex items-center gap-1.5">
+              <FaCalendarAlt size={10} /> {req.date}
+            </p>
           </div>
         </div>
 
@@ -173,29 +165,22 @@ function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
         </div>
       </div>
 
-      {/* Vehicle + operation */}
-      {(req.marque || req.modele) && (
-        <div className="mt-4 flex flex-wrap items-center gap-2">
-          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-sm text-white">
-            <FaCar size={12} className="text-accent" />
-            {req.marque} {req.modele}
+      {/* Service + duration */}
+      <div className="mt-4 flex flex-wrap items-center gap-2">
+        <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border text-sm font-semibold ${serviceMeta.cls}`}>
+          <ServiceIcon size={12} />
+          {serviceMeta.label}
+        </span>
+        {req.duree && (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white/60">
+            <FaClock size={11} className="text-accent" />
+            Durée : <span className="text-white/80 font-medium">{req.duree}</span>
           </span>
-          {infoItems.map(item => (
-            <span key={item.label} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-white/60">
-              <item.icon size={11} className="text-accent" />
-              {item.label} : <span className="text-white/80 font-medium">{item.value}</span>
-            </span>
-          ))}
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Client info */}
       <div className="mt-4 grid gap-2 sm:grid-cols-2 text-sm">
-        {req.operation && (
-          <p className="text-white/70">
-            <span className="text-white/40">Opération :</span> {req.operation}
-          </p>
-        )}
         {req.email && (
           <a href={`mailto:${req.email}`} className="text-white/70 hover:text-accent transition-colors truncate">
             <FaEnvelopeOpenText className="inline mr-1.5 text-accent" size={12} />
@@ -223,40 +208,26 @@ function DemandeCard({ req, onStatus, onDelete, onOpenPhoto }) {
         </p>
       )}
 
-      {/* Photos */}
-      {req.photos && req.photos.length > 0 && (
-        <div className="mt-4 border-t border-white/10 pt-4">
-          <p className="mb-3 text-xs text-white/40 uppercase tracking-widest flex items-center gap-2">
-            <FaExpand size={11} /> Photos du véhicule ({req.photos.length})
-          </p>
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3">
-            {req.photos.map((src, i) => (
-              <button
-                key={i}
-                onClick={() => onOpenPhoto(src)}
-                className="group relative aspect-video overflow-hidden rounded-xl border border-white/10 cursor-pointer"
-                title="Agrandir"
-              >
-                <img src={src} alt={`Photo ${i + 1}`} className="h-full w-full object-cover transition-transform group-hover:scale-105" />
-                <span className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <FaExpand size={14} className="text-white" />
-                </span>
-              </button>
-            ))}
+      {/* Véhicule proposé (échange / vente) */}
+      {req.brand && (
+        <div className="mt-4 rounded-xl border border-white/10 bg-white/[0.03] p-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">Véhicule proposé</p>
+          <p className="mt-2 text-sm font-bold text-white">{req.brand} {req.model || ''}</p>
+          <div className="mt-2 flex flex-wrap gap-2 text-xs text-white/60">
+            {req.year && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">Année : {req.year}</span>}
+            {req.mileage && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{Number(req.mileage).toLocaleString('fr-FR')} km</span>}
+            {req.fuel && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{req.fuel}</span>}
+            {req.transmission && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{req.transmission}</span>}
+            {req.engine && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{req.engine}</span>}
+            {req.color && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{req.color}</span>}
+            {req.prixSouhaite && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">Prix souhaité : {Number(req.prixSouhaite).toLocaleString('fr-FR')} DA</span>}
+            {req.demandeType && <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10">{req.demandeType === 'echange' ? 'Échange' : 'Vente'}</span>}
           </div>
         </div>
       )}
 
       {/* Actions */}
       <div className="mt-4 flex flex-wrap justify-end gap-2">
-        {isVente && (
-          <button
-            onClick={quickAddToInventory}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold text-black bg-accent hover:bg-white transition-all cursor-pointer"
-          >
-            <FaPlus size={12} /> Ajouter à l&apos;inventaire
-          </button>
-        )}
         {req.status !== 'terminee' && (
           <button
             onClick={() => onStatus(req.id, 'terminee')}

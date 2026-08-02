@@ -62,13 +62,9 @@ export default function AdminLogin() {
           initial={{ opacity: 0, scale: 0.8, rotate: -6 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ type: 'spring', stiffness: 200, damping: 16 }}
-          className="w-16 h-16 rounded-2xl bg-dark-card border border-accent/40 flex items-center justify-center overflow-hidden mx-auto mb-4 shadow-[0_0_30px_rgba(59,130,246,0.35)]"
+          className="w-16 h-16 rounded-2xl bg-dark-card border border-accent/40 flex items-center justify-center overflow-hidden mx-auto mb-4 shadow-[0_0_30px_rgba(225,29,46,0.35)]"
         >
-          <img
-            src="/746729992_18275557168293964_1498530892815492404_n.jpg"
-            alt="Les Frères Auto"
-            className="w-full h-full object-cover"
-          />
+          <span className="text-accent text-lg font-extrabold">fr_auto</span>
         </motion.div>
 
         <motion.div
@@ -77,7 +73,7 @@ export default function AdminLogin() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="text-center mb-6"
         >
-          <h1 className="text-2xl font-extrabold text-dark-text">Les Frères Auto</h1>
+          <h1 className="text-2xl font-extrabold text-dark-text">gts auto</h1>
           <p className="text-sm text-gray-400 mt-1">Connectez-vous à l'administration</p>
         </motion.div>
 
@@ -164,7 +160,7 @@ export default function AdminLogin() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 rounded-xl bg-accent text-black text-sm font-bold hover:bg-white disabled:opacity-80 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+            className="w-full py-3 rounded-xl bg-accent text-black text-sm font-bold hover:bg-white disabled:opacity-80 transition-all cursor-pointer flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(225,29,46,0.3)]"
           >
             {loading ? (
               <>

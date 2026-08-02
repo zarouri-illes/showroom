@@ -58,7 +58,7 @@ const ListingsPage = () => {
         </p>
         <SplitText
           tag="h1"
-          text="Parcourez nos véhicules"
+          text="Louez nos véhicules"
           splitType="words"
           delay={40}
           duration={0.7}
@@ -66,8 +66,8 @@ const ListingsPage = () => {
           className="title text-3xl text-white sm:text-5xl"
         />
         <p className="mt-6 text-white/60">
-          Tous nos véhicules sont inspectés, certifiés et garantis. Filtrez par
-          catégorie ou triez selon vos préférences.
+          Tous nos véhicules sont inspectés, certifiés et garantis. Louez à la journée,
+          à la semaine ou au mois — tarifs transparents et assurance incluse.
         </p>
       </div>
 

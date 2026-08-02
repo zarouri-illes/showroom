@@ -92,7 +92,7 @@ export default function AdminSocial() {
               type="text"
               value={form.contact_address}
               onChange={e => setForm(prev => ({ ...prev, contact_address: e.target.value }))}
-              placeholder="123 Rue Didouche Mourad, Alger"
+              placeholder="En face AB park, Bouira, Algérie"
               className="w-full px-4 py-3 rounded-xl bg-dark-bg border border-dark-border text-dark-text text-sm outline-none focus:border-accent focus:ring-2 focus:ring-accent/15 transition-all"
             />
           </div>

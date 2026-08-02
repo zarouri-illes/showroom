@@ -4,11 +4,11 @@ import { gsap } from '../animations'
 import { revealStagger } from '../animations/gsap'
 import { initButtonEffects } from '../animations/microInteractions'
 import { XIcon, FacebookIcon } from './SocialIcons'
-
 const MENU_LINKS = [
   { label: 'Accueil', to: '/' },
   { label: 'Offres', to: '/#offers' },
   { label: 'Inventaire', to: '/#inventory' },
+  { label: 'Échange / Vente', to: '/echange-vente' },
   { label: 'Contact', to: '/contact' },
 ]
 
@@ -42,13 +42,16 @@ const Footer = () => {
     >
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-2 lg:py-20">
         <div className="footer-col">
-          <h3 className="logo mb-4 text-2xl font-extrabold tracking-wider text-white">
-            momo auto
-          </h3>
+          <div className="mb-4 flex items-center gap-2">
+            <h3 className="logo text-2xl font-extrabold tracking-wider text-white">
+              fr<span className="text-accent">_auto</span>
+            </h3>
+          </div>
           <ul className="space-y-2 text-sm text-white/60">
             <li>Réservez votre consultation gratuite !</li>
-            <li>05 40 09 99 59</li>
-            <li>Herkat, Bouria, Algérie</li>
+            <li>05 42 13 06 23</li>
+            <li>0559 83 85 75</li>
+            <li>En face AB park, Bouira, Algérie</li>
           </ul>
         </div>
 
@@ -67,7 +70,7 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/10 px-4 py-6 text-xs text-white/50 sm:flex-row sm:px-6">
-        <p>Copyright @ momo auto. Tous droits réservés.</p>
+        <p>Copyright @ gts auto. Tous droits réservés.</p>
         <div className="flex gap-3">
           <a href="#" aria-label="X" className="btn-glow flex h-9 w-9 items-center justify-center rounded-full bg-white/10 hover:bg-accent hover:text-black">
             <XIcon />

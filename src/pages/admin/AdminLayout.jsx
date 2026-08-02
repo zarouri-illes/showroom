@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaTachometerAlt, FaCar, FaShareAlt, FaStar, FaEnvelopeOpenText, FaBars, FaTimes, FaHome, FaSignOutAlt, FaUserCog } from 'react-icons/fa';
 import { useAdmin } from '../../context/AdminContext';
-
 const navItems = [
   { path: '/admin', label: 'Vue d\'ensemble', icon: FaTachometerAlt },
   { path: '/admin/cars', label: 'Stock / Voitures', icon: FaCar },
@@ -20,7 +19,7 @@ export default function AdminLayout({ children }) {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   return (
-    <div className="min-h-screen bg-dark-bg flex flex-col lg:flex-row">
+    <div className="admin-app min-h-screen bg-dark-bg flex flex-col lg:flex-row">
       <button
         onClick={() => setSidebarOpen(true)}
         className="lg:hidden fixed top-3 left-3 z-50 w-11 h-11 rounded-xl bg-dark-card border border-white/10 flex items-center justify-center text-dark-text hover:bg-dark-bg-alt transition-colors cursor-pointer"
@@ -35,7 +34,7 @@ export default function AdminLayout({ children }) {
         <div className="flex items-center justify-between px-5 py-5 border-b border-white/10">
           <Link to="/admin" className="flex items-center gap-3" onClick={() => setSidebarOpen(false)}>
             <div>
-              <p className="title text-accent font-bold text-base leading-tight">momo auto</p>
+              <p className="title text-accent font-bold text-base leading-tight">fr_auto</p>
               <p className="text-[10px] text-white/40">Administration</p>
             </div>
           </Link>
